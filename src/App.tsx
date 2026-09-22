@@ -17,11 +17,14 @@ import { AdmissionsCTA } from './components/AdmissionsCTA';
 import { Footer } from './components/Footer';
 import { AdmissionModal } from './components/AdmissionModal';
 import { BrochureModal } from './components/BrochureModal';
+import { FastFactsModal, PoliciesModal } from './components/InstitutionalModals';
 import { FloatingAssistant } from './components/FloatingAssistant';
 
 export function App() {
   const [admissionModalOpen, setAdmissionModalOpen] = useState(false);
   const [brochureModalOpen, setBrochureModalOpen] = useState(false);
+  const [fastFactsModalOpen, setFastFactsModalOpen] = useState(false);
+  const [policiesModalOpen, setPoliciesModalOpen] = useState(false);
 
   const handleOpenAdmission = () => setAdmissionModalOpen(true);
   const handleCloseAdmission = () => setAdmissionModalOpen(false);
@@ -29,30 +32,42 @@ export function App() {
   const handleOpenBrochure = () => setBrochureModalOpen(true);
   const handleCloseBrochure = () => setBrochureModalOpen(false);
 
+  const handleOpenFastFacts = () => setFastFactsModalOpen(true);
+  const handleCloseFastFacts = () => setFastFactsModalOpen(false);
+
+  const handleOpenPolicies = () => setPoliciesModalOpen(true);
+  const handleClosePolicies = () => setPoliciesModalOpen(false);
+
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* 1. Top Utility Header */}
       <TopBar
         onOpenAdmission={handleOpenAdmission}
         onOpenBrochure={handleOpenBrochure}
+        onOpenFastFacts={handleOpenFastFacts}
+        onOpenPolicies={handleOpenPolicies}
       />
 
-      {/* 2. Main Sticky Navigation */}
+      {/* 2. Main Sticky Navigation with Official Menu & Crest */}
       <Navbar
         onOpenAdmission={handleOpenAdmission}
         onOpenBrochure={handleOpenBrochure}
+        onOpenFastFacts={handleOpenFastFacts}
+        onOpenPolicies={handleOpenPolicies}
       />
 
-      {/* 3. Live Campus News Ticker */}
+      {/* 3. Live Campus News & Notice Ticker */}
       <AnnouncementTicker
         onOpenAdmission={handleOpenAdmission}
       />
 
       <main style={{ flex: 1 }}>
-        {/* 4. Prestigious Hero Section with Interactive Age/Grade Matcher */}
+        {/* 4. Prestigious Hero Section with Interactive Age/Grade Matcher & Real Slides */}
         <Hero
           onOpenAdmission={handleOpenAdmission}
           onOpenBrochure={handleOpenBrochure}
+          onOpenFastFacts={handleOpenFastFacts}
+          onOpenPolicies={handleOpenPolicies}
         />
 
         {/* 5. Vision, Mission & Leadership Spotlight */}
@@ -119,8 +134,21 @@ export function App() {
         isOpen={brochureModalOpen}
         onClose={handleCloseBrochure}
       />
+
+      <FastFactsModal
+        isOpen={fastFactsModalOpen}
+        onClose={handleCloseFastFacts}
+        onOpenAdmission={handleOpenAdmission}
+        onOpenBrochure={handleOpenBrochure}
+      />
+
+      <PoliciesModal
+        isOpen={policiesModalOpen}
+        onClose={handleClosePolicies}
+      />
     </div>
   );
 }
 
 export default App;
+

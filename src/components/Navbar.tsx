@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, GraduationCap } from 'lucide-react';
+import { Menu, X, ChevronDown, GraduationCap, Info, ShieldAlert, Sparkles, Phone } from 'lucide-react';
+import { LakshayaLogo } from './LakshayaLogo';
+import { SCHOOL_INFO } from '../data/schoolData';
 
 interface NavbarProps {
   onOpenAdmission: () => void;
   onOpenBrochure: () => void;
+  onOpenFastFacts: () => void;
+  onOpenPolicies: () => void;
 }
 
-export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
+export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenPolicies }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -29,38 +33,88 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
       label: 'About Lakshaya',
       href: '#about',
       children: [
-        { label: 'Vision, Mission & Motto', href: '#about', desc: 'Compassionate, ethical global citizens' },
-        { label: 'Meaning & Logo Philosophy', href: '#identity', desc: 'Symbolism of aim, flame & rising sun' },
-        { label: 'The Developmental Pentagon', href: '#pentagon', desc: '5 Core dimensions of student growth' },
-        { label: '8 Core Focus Pillars', href: '#focus-on', desc: 'From earthquake safety to karate & farms' },
+        { label: 'Vision, Mission & Credo', href: '#about', desc: 'Supreme goal & compassionate global citizens' },
+        { label: 'Meaning of Lakshaya & Crest', href: '#identity', desc: 'Behind the name: AIM HIGH & ज्ञान दीप' },
+        { label: 'Agarwal Group 35-Yr Heritage', href: '#identity', desc: 'City Gold, Medilink & Agrasen Vidhyalaya' },
         { label: 'Leadership & Welcome Address', href: '#leadership', desc: 'ECI Awardee Principal Neha Agrawal' },
+        { label: '5 Core Institutional Beliefs', href: '#identity', desc: 'Putting Children First in everything' },
       ]
     },
     {
-      label: 'Academics',
+      label: 'Policies',
+      href: '#policies',
+      isPolicyTrigger: true,
+      children: [
+        { label: 'General Policy & Attendance (80% Rule)', action: 'policies', desc: 'Mandatory 80% attendance & punctual entry' },
+        { label: 'Library Open Access System', action: 'policies', desc: '1 Book/week, reading room & encyclopedia' },
+        { label: 'Discipline Policy & Code of Conduct', action: 'policies', desc: 'Holistic character & behavioural standards' },
+        { label: 'Safe Transport Fleet Guidelines', action: 'policies', desc: 'Verified routes, bus attendants & safety rules' },
+        { label: 'House & Club Details', action: 'policies', desc: 'Leadership, inter-house sports & cultural clubs' }
+      ]
+    },
+    {
+      label: 'Curriculum',
       href: '#academics',
       children: [
-        { label: 'Early Years (Pre-Nursery)', href: '#academics', desc: 'Ranked #1 Pre-Nursery in Ahmedabad' },
-        { label: 'Primary Wing (Grades 1-5)', href: '#academics', desc: 'Experiential & foundational discovery' },
-        { label: 'Middle Wing (Grades 6-8)', href: '#academics', desc: 'Inquiry STEM & analytical mastery' },
-        { label: 'Senior Secondary (Grades 9-12)', href: '#academics', desc: 'Board excellence & global readiness' },
+        { label: 'The Developmental Pentagon', href: '#pentagon', desc: 'Cognitive, Social, Emotional, Physical & Ethical' },
+        { label: 'Early Years (Pre-Nursery)', href: '#academics', desc: 'Award-winning experiential foundation' },
+        { label: 'Primary Wing (Grades 1-5)', href: '#academics', desc: 'Inquiry STEM & Shilaj Farm field excursions' },
+        { label: 'Middle Wing (Grades 6-8)', href: '#academics', desc: 'Robotics labs, Wild Wisdom & Karate championships' },
+        { label: '8 Core Focus Pillars', href: '#focus-on', desc: 'Seismic safety, farm hub & martial arts' },
       ]
     },
     {
-      label: 'Campus & Safety',
+      label: 'Facility',
       href: '#campus',
       children: [
-        { label: 'Earthquake-Resistant Campus', href: '#campus', desc: 'Certified seismic-engineered safety' },
-        { label: 'Sunlit Smart Classrooms', href: '#campus', desc: 'Natural daylight & cross-ventilation' },
-        { label: 'Shilaj Farm Eco-Hub', href: '#campus', desc: 'Experiential botany & nature immersion' },
-        { label: 'Sports Arena & Karate Dojo', href: '#campus', desc: 'Home of State & National Champions' },
+        { label: '2-Acre Certified Campus', href: '#campus', desc: 'Certified seismic earthquake-resistant safety' },
+        { label: 'Sunlit Smart Classrooms', href: '#campus', desc: 'Cross-ventilated natural daylight architecture' },
+        { label: 'Science & Computer Labs', href: '#campus', desc: 'Hi-tech hands-on experimental discovery' },
+        { label: 'Shilaj Eco-Farm Immersion', href: '#campus', desc: 'Botanical, agro & ecological experiential hub' },
+        { label: 'Martial Arts Dojo & Sports Arena', href: '#campus', desc: 'Home of 22 All-India Karate medalists' },
       ]
     },
-    { label: 'Campus Tour', href: '#gallery' },
-    { label: 'Student Life', href: '#student-life' },
-    { label: 'Achievements', href: '#achievements' },
-    { label: 'Contact', href: '#contact' },
+    {
+      label: 'Admissions',
+      href: '#admissions-cta',
+      children: [
+        { label: 'Admissions 2025-26 Overview', href: '#admissions-cta', desc: 'Seats open for Pre-Nursery to Grade 8' },
+        { label: 'Age Criteria & Grade Matcher', href: '#hero', desc: 'Check eligibility by birthdate & age' },
+        { label: 'Online Enquiry & Registration', action: 'admissions', desc: 'Submit application for priority evaluation' },
+        { label: 'Fee Structure & Guidelines', href: '#admissions-cta', desc: 'Transparent fee schedule & inclusions' },
+      ]
+    },
+    {
+      label: 'Achievements',
+      href: '#achievements',
+      children: [
+        { label: '27th ECI National Education Award', href: '#achievements', desc: 'Best Pre School & Best Principal Neha Agrawal' },
+        { label: 'Discovery Channel Wild Wisdom Quiz', href: '#achievements', desc: '4 State Finalists & 225+ Achievers' },
+        { label: 'All-India Karate Championships', href: '#achievements', desc: '22 Medals (6 Gold, 7 Silver, 9 Bronze)' },
+        { label: 'National SpellBee Laurels', href: '#achievements', desc: '51 National Level Certificates' },
+      ]
+    },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Contact Us', href: '#contact' },
   ];
+
+  const handleSubItemClick = (subItem: any) => {
+    setActiveDropdown(null);
+    if (subItem.action === 'policies') {
+      onOpenPolicies();
+      return;
+    }
+    if (subItem.action === 'admissions') {
+      onOpenAdmission();
+      return;
+    }
+    if (subItem.href) {
+      const el = document.querySelector(subItem.href);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <header style={{
@@ -68,87 +122,31 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
       top: 0,
       zIndex: 50,
       transition: 'all var(--transition-normal)',
-      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)',
+      backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.96)',
       backdropFilter: 'blur(12px)',
-      boxShadow: isScrolled ? 'var(--shadow-md)' : '0 1px 3px rgba(0,0,0,0.06)',
-      borderBottom: '1px solid rgba(226, 232, 240, 0.8)'
+      boxShadow: isScrolled ? '0 4px 20px rgba(11, 26, 48, 0.08)' : '0 1px 3px rgba(0,0,0,0.06)',
+      borderBottom: '1px solid rgba(226, 232, 240, 0.85)'
     }}>
       <div className="container" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: isScrolled ? '0.75rem' : '1rem',
-        paddingBottom: isScrolled ? '0.75rem' : '1rem',
-        transition: 'padding var(--transition-normal)'
+        paddingTop: isScrolled ? '0.6rem' : '0.85rem',
+        paddingBottom: isScrolled ? '0.6rem' : '0.85rem',
+        transition: 'padding var(--transition-normal)',
+        gap: '0.75rem'
       }}>
-        {/* Brand Crest & Title */}
-        <a href="#hero" style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.4rem, 2vw, 0.75rem)', minWidth: 0 }}>
-          <div style={{
-            width: 'clamp(38px, 6vw, 46px)',
-            height: 'clamp(38px, 6vw, 46px)',
-            borderRadius: '10px',
-            background: 'linear-gradient(135deg, #0b1a30 0%, #1e427d 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--accent-gold)',
-            boxShadow: '0 4px 12px rgba(11, 26, 48, 0.25)',
-            position: 'relative',
-            border: '2px solid rgba(245, 158, 11, 0.4)',
-            flexShrink: 0
-          }}>
-            <GraduationCap size={24} />
-            <div style={{
-              position: 'absolute',
-              bottom: '-2px',
-              right: '-2px',
-              width: '12px',
-              height: '12px',
-              borderRadius: '50%',
-              backgroundColor: 'var(--accent-crimson)',
-              border: '2px solid #ffffff'
-            }} />
-          </div>
-
-          <div style={{ minWidth: 0 }}>
-            <div style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(1rem, 3.5vw, 1.3rem)',
-              fontWeight: 800,
-              color: 'var(--primary-950)',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.15,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.3rem',
-              whiteSpace: 'nowrap'
-            }}>
-              <span>LAKSHAYA</span>
-              <span style={{
-                color: 'var(--accent-crimson)',
-                fontSize: 'clamp(0.6rem, 1.8vw, 0.72rem)',
-                fontWeight: 700,
-                backgroundColor: 'var(--accent-crimson-light)',
-                padding: '0.1rem 0.35rem',
-                borderRadius: '4px',
-                letterSpacing: '0.04em'
-              }}>AHMEDABAD</span>
-            </div>
-            <div style={{
-              fontSize: 'clamp(0.65rem, 1.8vw, 0.72rem)',
-              fontWeight: 600,
-              color: 'var(--text-muted)',
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              whiteSpace: 'nowrap'
-            }}>
-              International School
-            </div>
-          </div>
+        {/* Brand Crest & Title with Authentic Lakshaya Vector Logo */}
+        <a 
+          href="#hero" 
+          style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
+          aria-label="Lakshaya International School Homepage"
+        >
+          <LakshayaLogo size={isScrolled ? 42 : 48} showText={true} />
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav style={{ display: 'none', alignItems: 'center', gap: '0.25rem' }} className="desktop-nav">
+        <nav style={{ display: 'none', alignItems: 'center', gap: '0.15rem' }} className="desktop-nav">
           {navLinks.map((item) => (
             <div
               key={item.label}
@@ -158,28 +156,35 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
             >
               <a
                 href={item.href}
+                onClick={(e) => {
+                  if (item.isPolicyTrigger) {
+                    e.preventDefault();
+                    onOpenPolicies();
+                  }
+                }}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.25rem',
-                  padding: '0.5rem 0.85rem',
-                  fontSize: '0.9rem',
-                  fontWeight: 600,
-                  color: 'var(--text-primary)',
+                  gap: '0.2rem',
+                  padding: '0.45rem 0.65rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  color: item.isPolicyTrigger ? '#b91c1c' : '#1e293b',
                   borderRadius: 'var(--radius-sm)',
-                  transition: 'all var(--transition-fast)'
+                  transition: 'all var(--transition-fast)',
+                  whiteSpace: 'nowrap'
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.color = 'var(--primary-700)';
-                  e.currentTarget.style.backgroundColor = 'var(--primary-50)';
+                  e.currentTarget.style.color = '#0b1a30';
+                  e.currentTarget.style.backgroundColor = 'rgba(11, 26, 48, 0.05)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.color = 'var(--text-primary)';
+                  e.currentTarget.style.color = item.isPolicyTrigger ? '#b91c1c' : '#1e293b';
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
                 <span>{item.label}</span>
-                {item.children && <ChevronDown size={14} style={{ opacity: 0.6 }} />}
+                {item.children && <ChevronDown size={13} style={{ opacity: 0.6, marginLeft: '0.1rem' }} />}
               </a>
 
               {/* Dropdown Menu */}
@@ -187,37 +192,51 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
                 <div style={{
                   position: 'absolute',
                   top: '100%',
-                  left: 0,
-                  width: '280px',
+                  left: item.label === 'Achievements' || item.label === 'Admissions' ? 'auto' : 0,
+                  right: item.label === 'Achievements' || item.label === 'Admissions' ? 0 : 'auto',
+                  width: '300px',
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-md)',
-                  boxShadow: 'var(--shadow-xl)',
-                  border: '1px solid var(--border-light)',
+                  boxShadow: '0 12px 30px rgba(11, 26, 48, 0.15)',
+                  border: '1px solid rgba(226, 232, 240, 0.9)',
                   padding: '0.5rem',
-                  animation: 'fadeIn 0.2s ease',
+                  animation: 'fadeIn 0.18s ease',
                   zIndex: 60
                 }}>
-                  {item.children.map((subItem) => (
-                    <a
+                  <div style={{
+                    padding: '0.35rem 0.75rem',
+                    fontSize: '0.68rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    color: '#94a3b8',
+                    letterSpacing: '0.06em',
+                    borderBottom: '1px solid #f1f5f9',
+                    marginBottom: '0.35rem'
+                  }}>
+                    {item.label} • Official Details
+                  </div>
+
+                  {item.children.map((subItem: any) => (
+                    <div
                       key={subItem.label}
-                      href={subItem.href}
+                      onClick={() => handleSubItemClick(subItem)}
                       style={{
                         display: 'block',
-                        padding: '0.625rem 0.75rem',
+                        padding: '0.5rem 0.75rem',
                         borderRadius: 'var(--radius-sm)',
-                        transition: 'background var(--transition-fast)'
+                        transition: 'background var(--transition-fast)',
+                        cursor: 'pointer'
                       }}
-                      onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--bg-main)'}
+                      onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(241, 245, 249, 0.8)'}
                       onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
-                      onClick={() => setActiveDropdown(null)}
                     >
-                      <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--primary-900)' }}>
+                      <div style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--primary-900)' }}>
                         {subItem.label}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.15rem' }}>
+                      <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem', lineHeight: 1.3 }}>
                         {subItem.desc}
                       </div>
-                    </a>
+                    </div>
                   ))}
                 </div>
               )}
@@ -226,18 +245,61 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
         </nav>
 
         {/* CTA Buttons & Mobile Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.35rem, 1.5vw, 0.75rem)', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+          {/* Quick Fast Facts Trigger on Header */}
+          <button
+            onClick={onOpenFastFacts}
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              gap: '0.3rem',
+              backgroundColor: 'rgba(245, 158, 11, 0.12)',
+              border: '1px solid rgba(245, 158, 11, 0.35)',
+              color: '#92400e',
+              fontSize: '0.75rem',
+              fontWeight: 800,
+              padding: '0.45rem 0.75rem',
+              borderRadius: 'var(--radius-full)',
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)'
+            }}
+            className="navbar-fastfacts-desktop"
+            title="Open School Fast Facts"
+          >
+            <Info size={13} color="#d97706" />
+            <span>Fast Facts</span>
+          </button>
+
+          {/* Primary Apply Button */}
           <button
             onClick={onOpenAdmission}
-            className="btn btn-primary"
             style={{
-              fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
-              padding: 'clamp(0.45rem, 1.5vw, 0.625rem) clamp(0.65rem, 2vw, 1.15rem)',
-              borderRadius: 'var(--radius-full)'
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              backgroundColor: '#ed1c25',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: 'var(--radius-full)',
+              padding: 'clamp(0.45rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(0.78rem, 2vw, 0.88rem)',
+              fontWeight: 800,
+              letterSpacing: '0.02em',
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(237, 28, 37, 0.35)',
+              transition: 'transform var(--transition-fast), box-shadow var(--transition-fast)'
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(237, 28, 37, 0.45)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(237, 28, 37, 0.35)';
             }}
           >
             <GraduationCap size={16} />
-            <span>Apply</span>
+            <span>Apply Now</span>
           </button>
 
           {/* Mobile menu trigger */}
@@ -247,12 +309,12 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'none',
-              border: '1px solid var(--border-light)',
+              background: '#f8fafc',
+              border: '1px solid #cbd5e1',
               borderRadius: 'var(--radius-sm)',
               padding: '0.45rem',
               cursor: 'pointer',
-              color: 'var(--text-primary)',
+              color: '#0f172a',
               flexShrink: 0
             }}
             className="mobile-nav-trigger"
@@ -263,66 +325,139 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer with authentic categorized links */}
       {mobileMenuOpen && (
         <div style={{
           backgroundColor: '#ffffff',
-          borderTop: '1px solid var(--border-light)',
+          borderTop: '2px solid #ed1c25',
           padding: '1.25rem',
-          maxHeight: '80vh',
+          maxHeight: '82vh',
           overflowY: 'auto',
-          boxShadow: 'var(--shadow-xl)'
+          boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
         }} className="mobile-drawer">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            
+            {/* Quick Contact & Fast Facts Ribbon inside Mobile Menu */}
+            <div style={{
+              display: 'flex',
+              gap: '0.5rem',
+              marginBottom: '0.75rem'
+            }}>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenFastFacts();
+                }}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.35rem',
+                  backgroundColor: 'rgba(245, 158, 11, 0.12)',
+                  border: '1px solid rgba(245, 158, 11, 0.35)',
+                  color: '#92400e',
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  padding: '0.55rem',
+                  borderRadius: 'var(--radius-sm)',
+                  cursor: 'pointer'
+                }}
+              >
+                <Info size={14} />
+                <span>:: Fast Facts</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenPolicies();
+                }}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.35rem',
+                  backgroundColor: 'rgba(237, 28, 37, 0.1)',
+                  border: '1px solid rgba(237, 28, 37, 0.3)',
+                  color: '#b91c1c',
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  padding: '0.55rem',
+                  borderRadius: 'var(--radius-sm)',
+                  cursor: 'pointer'
+                }}
+              >
+                <ShieldAlert size={14} />
+                <span>School Policies</span>
+              </button>
+            </div>
+
             {navLinks.map((item) => (
-              <div key={item.label} style={{ borderBottom: '1px solid var(--bg-alt)', paddingBottom: '0.5rem' }}>
+              <div key={item.label} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '0.5rem' }}>
                 <a
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    if (item.isPolicyTrigger) {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      onOpenPolicies();
+                    } else if (!item.children) {
+                      setMobileMenuOpen(false);
+                    }
+                  }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0.625rem 0',
-                    fontSize: '1rem',
+                    padding: '0.5rem 0',
+                    fontSize: '0.98rem',
                     fontWeight: 700,
-                    color: 'var(--primary-900)'
+                    color: item.isPolicyTrigger ? '#b91c1c' : '#0f172a'
                   }}
                 >
                   <span>{item.label}</span>
                 </a>
+
                 {item.children && (
-                  <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.375rem', marginTop: '0.25rem' }}>
-                    {item.children.map(subItem => (
-                      <a
+                  <div style={{ paddingLeft: '0.85rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', marginTop: '0.2rem' }}>
+                    {item.children.map((subItem: any) => (
+                      <div
                         key={subItem.label}
-                        href={subItem.href}
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          handleSubItemClick(subItem);
+                        }}
                         style={{
-                          fontSize: '0.85rem',
-                          color: 'var(--text-secondary)',
-                          padding: '0.25rem 0'
+                          fontSize: '0.84rem',
+                          color: '#475569',
+                          padding: '0.3rem 0',
+                          borderLeft: '2px solid #e2e8f0',
+                          paddingLeft: '0.6rem',
+                          cursor: 'pointer'
                         }}
                       >
-                        {subItem.label}
-                      </a>
+                        <div style={{ fontWeight: 600 }}>{subItem.label}</div>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
             ))}
 
-            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem', flexDirection: 'column' }}>
+            {/* Direct Action Buttons in Mobile Menu */}
+            <div style={{ display: 'flex', gap: '0.65rem', marginTop: '1rem', flexDirection: 'column' }}>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   onOpenAdmission();
                 }}
                 className="btn btn-primary"
-                style={{ width: '100%' }}
+                style={{ width: '100%', padding: '0.75rem', fontSize: '0.95rem' }}
               >
                 <GraduationCap size={18} />
-                <span>Admissions 2025-26</span>
+                <span>Admissions 2025-26 (Pre-Nursery to Gr. 8)</span>
               </button>
 
               <button
@@ -331,18 +466,41 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure }: NavbarProps) => {
                   onOpenBrochure();
                 }}
                 className="btn btn-outline-navy"
-                style={{ width: '100%' }}
+                style={{ width: '100%', padding: '0.7rem', fontSize: '0.9rem' }}
               >
-                <span>Download E-Brochure</span>
+                <span>Download Official E-Brochure</span>
               </button>
+
+              <a
+                href={`tel:${SCHOOL_INFO.phone.replace(/\s+/g, '')}`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  padding: '0.65rem',
+                  backgroundColor: '#f8fafc',
+                  border: '1px solid #cbd5e1',
+                  borderRadius: 'var(--radius-md)',
+                  color: '#0f172a',
+                  fontWeight: 700,
+                  fontSize: '0.85rem'
+                }}
+              >
+                <Phone size={15} color="#ed1c25" />
+                <span>Call Admissions: {SCHOOL_INFO.phone}</span>
+              </a>
             </div>
           </div>
         </div>
       )}
 
       <style>{`
-        @media (min-width: 1024px) {
+        @media (min-width: 1120px) {
           .desktop-nav {
+            display: flex !important;
+          }
+          .navbar-fastfacts-desktop {
             display: flex !important;
           }
           .mobile-nav-trigger {
