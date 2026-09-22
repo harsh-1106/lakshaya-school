@@ -30,7 +30,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
   const navLinks = [
     { label: 'Home', href: '#hero' },
     {
-      label: 'About Lakshaya',
+      label: 'About',
       href: '#about',
       children: [
         { label: 'Vision, Mission & Credo', href: '#about', desc: 'Supreme goal & compassionate global citizens' },
@@ -64,7 +64,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
       ]
     },
     {
-      label: 'Facility',
+      label: 'Campus',
       href: '#campus',
       children: [
         { label: '2-Acre Certified Campus', href: '#campus', desc: 'Certified seismic earthquake-resistant safety' },
@@ -95,7 +95,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
       ]
     },
     { label: 'Gallery', href: '#gallery' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   const handleSubItemClick = (subItem: any) => {
@@ -131,10 +131,13 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: isScrolled ? '0.6rem' : '0.85rem',
-        paddingBottom: isScrolled ? '0.6rem' : '0.85rem',
+        paddingTop: isScrolled ? '0.5rem' : '0.75rem',
+        paddingBottom: isScrolled ? '0.5rem' : '0.75rem',
         transition: 'padding var(--transition-normal)',
-        gap: '0.75rem'
+        gap: '0.5rem',
+        maxWidth: '1360px',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {/* Brand Crest & Title with Authentic Lakshaya Vector Logo */}
         <a 
@@ -142,11 +145,11 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
           aria-label="Lakshaya International School Homepage"
         >
-          <LakshayaLogo size={isScrolled ? 42 : 48} showText={true} />
+          <LakshayaLogo size={isScrolled ? 40 : 46} showText={true} />
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav style={{ display: 'none', alignItems: 'center', gap: '0.15rem' }} className="desktop-nav">
+        <nav style={{ display: 'none', alignItems: 'center', gap: '0.1rem', flexWrap: 'nowrap' }} className="desktop-nav">
           {navLinks.map((item) => (
             <div
               key={item.label}
@@ -165,9 +168,9 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.2rem',
-                  padding: '0.45rem 0.65rem',
-                  fontSize: '0.85rem',
+                  gap: '0.15rem',
+                  padding: '0.35rem 0.45rem',
+                  fontSize: '0.82rem',
                   fontWeight: 700,
                   color: item.isPolicyTrigger ? '#b91c1c' : '#1e293b',
                   borderRadius: 'var(--radius-sm)',
@@ -184,7 +187,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                 }}
               >
                 <span>{item.label}</span>
-                {item.children && <ChevronDown size={13} style={{ opacity: 0.6, marginLeft: '0.1rem' }} />}
+                {item.children && <ChevronDown size={12} style={{ opacity: 0.6, marginLeft: '0.05rem' }} />}
               </a>
 
               {/* Dropdown Menu */}
@@ -192,26 +195,26 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                 <div style={{
                   position: 'absolute',
                   top: '100%',
-                  left: item.label === 'Achievements' || item.label === 'Admissions' ? 'auto' : 0,
-                  right: item.label === 'Achievements' || item.label === 'Admissions' ? 0 : 'auto',
-                  width: '300px',
+                  left: ['Achievements', 'Admissions', 'Campus', 'Contact'].includes(item.label) ? 'auto' : 0,
+                  right: ['Achievements', 'Admissions', 'Campus', 'Contact'].includes(item.label) ? 0 : 'auto',
+                  width: '280px',
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-md)',
                   boxShadow: '0 12px 30px rgba(11, 26, 48, 0.15)',
                   border: '1px solid rgba(226, 232, 240, 0.9)',
-                  padding: '0.5rem',
+                  padding: '0.45rem',
                   animation: 'fadeIn 0.18s ease',
                   zIndex: 60
                 }}>
                   <div style={{
-                    padding: '0.35rem 0.75rem',
-                    fontSize: '0.68rem',
+                    padding: '0.3rem 0.65rem',
+                    fontSize: '0.65rem',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                     color: '#94a3b8',
                     letterSpacing: '0.06em',
                     borderBottom: '1px solid #f1f5f9',
-                    marginBottom: '0.35rem'
+                    marginBottom: '0.3rem'
                   }}>
                     {item.label} • Official Details
                   </div>
@@ -222,7 +225,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                       onClick={() => handleSubItemClick(subItem)}
                       style={{
                         display: 'block',
-                        padding: '0.5rem 0.75rem',
+                        padding: '0.45rem 0.65rem',
                         borderRadius: 'var(--radius-sm)',
                         transition: 'background var(--transition-fast)',
                         cursor: 'pointer'
@@ -230,10 +233,10 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                       onMouseEnter={e => e.currentTarget.style.backgroundColor = 'rgba(241, 245, 249, 0.8)'}
                       onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
                     >
-                      <div style={{ fontSize: '0.84rem', fontWeight: 700, color: 'var(--primary-900)' }}>
+                      <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--primary-900)' }}>
                         {subItem.label}
                       </div>
-                      <div style={{ fontSize: '0.72rem', color: '#64748b', marginTop: '0.15rem', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '0.1rem', lineHeight: 1.25 }}>
                         {subItem.desc}
                       </div>
                     </div>
@@ -245,60 +248,38 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
         </nav>
 
         {/* CTA Buttons & Mobile Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
-          {/* Quick Fast Facts Trigger on Header */}
-          <button
-            onClick={onOpenFastFacts}
-            style={{
-              display: 'none',
-              alignItems: 'center',
-              gap: '0.3rem',
-              backgroundColor: 'rgba(245, 158, 11, 0.12)',
-              border: '1px solid rgba(245, 158, 11, 0.35)',
-              color: '#92400e',
-              fontSize: '0.75rem',
-              fontWeight: 800,
-              padding: '0.45rem 0.75rem',
-              borderRadius: 'var(--radius-full)',
-              cursor: 'pointer',
-              transition: 'all var(--transition-fast)'
-            }}
-            className="navbar-fastfacts-desktop"
-            title="Open School Fast Facts"
-          >
-            <Info size={13} color="#d97706" />
-            <span>Fast Facts</span>
-          </button>
-
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
           {/* Primary Apply Button */}
           <button
             onClick={onOpenAdmission}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem',
+              gap: '0.35rem',
               backgroundColor: '#ed1c25',
               color: '#ffffff',
               border: 'none',
               borderRadius: 'var(--radius-full)',
-              padding: 'clamp(0.45rem, 1.5vw, 0.6rem) clamp(0.75rem, 2vw, 1.25rem)',
-              fontSize: 'clamp(0.78rem, 2vw, 0.88rem)',
+              padding: '0.45rem 1rem',
+              fontSize: '0.82rem',
               fontWeight: 800,
               letterSpacing: '0.02em',
               cursor: 'pointer',
-              boxShadow: '0 4px 12px rgba(237, 28, 37, 0.35)',
-              transition: 'transform var(--transition-fast), box-shadow var(--transition-fast)'
+              boxShadow: '0 3px 10px rgba(237, 28, 37, 0.35)',
+              transition: 'transform var(--transition-fast), box-shadow var(--transition-fast)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(237, 28, 37, 0.45)';
+              e.currentTarget.style.boxShadow = '0 5px 14px rgba(237, 28, 37, 0.45)';
             }}
             onMouseLeave={e => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(237, 28, 37, 0.35)';
+              e.currentTarget.style.boxShadow = '0 3px 10px rgba(237, 28, 37, 0.35)';
             }}
           >
-            <GraduationCap size={16} />
+            <GraduationCap size={15} />
             <span>Apply Now</span>
           </button>
 
@@ -324,6 +305,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
           </button>
         </div>
       </div>
+
 
       {/* Mobile Drawer with authentic categorized links */}
       {mobileMenuOpen && (
@@ -496,11 +478,8 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
       )}
 
       <style>{`
-        @media (min-width: 1120px) {
+        @media (min-width: 1140px) {
           .desktop-nav {
-            display: flex !important;
-          }
-          .navbar-fastfacts-desktop {
             display: flex !important;
           }
           .mobile-nav-trigger {
@@ -508,6 +487,20 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
           }
           .mobile-drawer {
             display: none !important;
+          }
+        }
+        @media (max-width: 1240px) and (min-width: 1140px) {
+          .desktop-nav a {
+            padding: 0.3rem 0.35rem !important;
+            font-size: 0.76rem !important;
+          }
+        }
+        @media (max-width: 1139px) {
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-nav-trigger {
+            display: flex !important;
           }
         }
       `}</style>

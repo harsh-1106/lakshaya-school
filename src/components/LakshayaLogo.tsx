@@ -1,4 +1,12 @@
-export const LakshayaLogo = ({ size = 48, showText = true }: { size?: number; showText?: boolean }) => {
+export const LakshayaLogo = ({ 
+  size = 48, 
+  showText = true,
+  showMotto = false 
+}: { 
+  size?: number; 
+  showText?: boolean;
+  showMotto?: boolean;
+}) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', textDecoration: 'none' }}>
       {/* Authentic Lakshaya Shield Crest */}
@@ -113,11 +121,11 @@ export const LakshayaLogo = ({ size = 48, showText = true }: { size?: number; sh
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(1.05rem, 2.2vw, 1.35rem)',
+            fontSize: 'clamp(1rem, 2vw, 1.25rem)',
             fontWeight: 800,
             color: 'var(--primary-950)',
             letterSpacing: '-0.02em',
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             display: 'flex',
             alignItems: 'center',
             gap: '0.35rem',
@@ -126,41 +134,45 @@ export const LakshayaLogo = ({ size = 48, showText = true }: { size?: number; sh
             <span>LAKSHAYA</span>
             <span style={{
               color: '#ed1c25',
-              fontSize: '0.68rem',
+              fontSize: '0.65rem',
               fontWeight: 800,
               backgroundColor: 'rgba(237, 28, 37, 0.1)',
               border: '1px solid rgba(237, 28, 37, 0.3)',
-              padding: '0.1rem 0.4rem',
+              padding: '0.08rem 0.35rem',
               borderRadius: '4px',
-              letterSpacing: '0.05em'
+              letterSpacing: '0.04em'
             }}>
               AHMEDABAD
             </span>
           </div>
 
           <div style={{
-            fontSize: '0.72rem',
+            fontSize: '0.7rem',
             fontWeight: 700,
             color: '#475569',
             letterSpacing: '0.06em',
             textTransform: 'uppercase',
             whiteSpace: 'nowrap',
-            lineHeight: 1.25
+            lineHeight: 1.2
           }}>
             International School
           </div>
 
-          <div style={{
-            fontSize: '0.62rem',
-            color: '#ed1c25',
-            fontWeight: 700,
-            letterSpacing: '0.04em',
-            fontStyle: 'italic'
-          }}>
-            Knowledge is the Supreme Goal
-          </div>
+          {showMotto && (
+            <div style={{
+              fontSize: '0.62rem',
+              color: '#ed1c25',
+              fontWeight: 700,
+              letterSpacing: '0.04em',
+              fontStyle: 'italic',
+              whiteSpace: 'nowrap'
+            }}>
+              Knowledge is the Supreme Goal
+            </div>
+          )}
         </div>
       )}
     </div>
   );
 };
+

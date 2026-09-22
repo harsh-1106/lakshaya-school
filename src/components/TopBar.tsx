@@ -13,7 +13,7 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
     <div style={{
       backgroundColor: '#07152b',
       color: 'rgba(255, 255, 255, 0.9)',
-      fontSize: '0.78rem',
+      fontSize: '0.76rem',
       position: 'relative',
       zIndex: 40,
       width: '100%',
@@ -23,13 +23,14 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: '0.4rem',
-        paddingBottom: '0.4rem',
+        paddingTop: '0.35rem',
+        paddingBottom: '0.35rem',
         gap: '0.5rem',
-        flexWrap: 'wrap'
+        maxWidth: '1360px',
+        boxSizing: 'border-box'
       }}>
         {/* Contact info items */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'nowrap', overflow: 'hidden' }}>
           <a
             href={`tel:${SCHOOL_INFO.phone.replace(/\s+/g, '')}`}
             style={{ 
@@ -37,12 +38,13 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               alignItems: 'center', 
               gap: '0.35rem', 
               color: '#ffffff',
-              transition: 'color var(--transition-fast)' 
+              transition: 'color var(--transition-fast)',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={e => e.currentTarget.style.color = 'var(--accent-gold)'}
             onMouseLeave={e => e.currentTarget.style.color = '#ffffff'}
           >
-            <Phone size={13} color="var(--accent-gold)" />
+            <Phone size={12} color="var(--accent-gold)" />
             <span style={{ fontWeight: 700 }}>{SCHOOL_INFO.phone}</span>
           </a>
 
@@ -53,40 +55,42 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               alignItems: 'center', 
               gap: '0.35rem', 
               color: 'rgba(255, 255, 255, 0.85)',
-              transition: 'color var(--transition-fast)' 
+              transition: 'color var(--transition-fast)',
+              whiteSpace: 'nowrap'
             }}
             className="topbar-tablet-up"
             onMouseEnter={e => e.currentTarget.style.color = 'var(--accent-gold)'}
             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.85)'}
           >
-            <Mail size={13} color="var(--accent-gold)" />
+            <Mail size={12} color="var(--accent-gold)" />
             <span>{SCHOOL_INFO.email}</span>
           </a>
 
-          <div style={{ display: 'none', alignItems: 'center', gap: '0.35rem', color: '#94a3b8' }} className="topbar-desktop-only">
-            <MapPin size={13} color="var(--accent-gold)" />
-            <span>S.P. Ring Road, Ahmedabad (2 Acres Campus)</span>
+          <div style={{ display: 'none', alignItems: 'center', gap: '0.35rem', color: '#94a3b8', whiteSpace: 'nowrap' }} className="topbar-desktop-only">
+            <MapPin size={12} color="var(--accent-gold)" />
+            <span>S.P. Ring Road, Ahmedabad</span>
           </div>
 
           <div style={{
             display: 'none',
             alignItems: 'center',
-            gap: '0.35rem',
+            gap: '0.3rem',
             backgroundColor: 'rgba(237, 28, 37, 0.15)',
             border: '1px solid rgba(237, 28, 37, 0.35)',
-            padding: '0.1rem 0.5rem',
+            padding: '0.08rem 0.45rem',
             borderRadius: '4px',
             color: '#fca5a5',
-            fontSize: '0.7rem',
-            fontWeight: 700
-          }} className="topbar-desktop-only">
+            fontSize: '0.68rem',
+            fontWeight: 700,
+            whiteSpace: 'nowrap'
+          }} className="topbar-lineage-badge">
             <Award size={11} color="#fca5a5" />
-            <span>Agarwal Group • 35-Yr Lineage</span>
+            <span>35-Yr Agarwal Group</span>
           </div>
         </div>
 
-        {/* Quick action buttons & Institutional Links matching lakshayaschool.com */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+        {/* Quick action buttons & Institutional Links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', flexShrink: 0 }}>
           {/* Fast Facts Modal Trigger */}
           <button
             onClick={onOpenFastFacts}
@@ -94,18 +98,19 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               background: 'transparent',
               border: 'none',
               color: 'var(--accent-gold)',
-              fontSize: '0.76rem',
+              fontSize: '0.74rem',
               fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '0.25rem',
-              padding: '0.2rem 0.4rem',
-              borderRadius: 'var(--radius-xs)'
+              padding: '0.15rem 0.35rem',
+              borderRadius: 'var(--radius-xs)',
+              whiteSpace: 'nowrap'
             }}
             title="View Lakshaya Fast Facts and Statistics"
           >
-            <Info size={13} />
+            <Info size={12} />
             <span>:: Fast Facts</span>
           </button>
 
@@ -119,17 +124,18 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               background: 'transparent',
               border: 'none',
               color: 'rgba(255, 255, 255, 0.85)',
-              fontSize: '0.76rem',
+              fontSize: '0.74rem',
               fontWeight: 600,
               cursor: 'pointer',
               alignItems: 'center',
               gap: '0.25rem',
-              padding: '0.2rem 0.4rem'
+              padding: '0.15rem 0.35rem',
+              whiteSpace: 'nowrap'
             }}
             className="topbar-tablet-up"
             title="School Policies: Attendance, Library, Transport"
           >
-            <ShieldAlert size={13} color="#fca5a5" />
+            <ShieldAlert size={12} color="#fca5a5" />
             <span>Policies</span>
           </button>
 
@@ -142,16 +148,17 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               background: 'transparent',
               border: 'none',
               color: '#ffffff',
-              fontSize: '0.76rem',
+              fontSize: '0.74rem',
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '0.25rem',
-              padding: '0.2rem 0.4rem'
+              padding: '0.15rem 0.35rem',
+              whiteSpace: 'nowrap'
             }}
           >
-            <FileText size={13} color="var(--accent-gold)" />
+            <FileText size={12} color="var(--accent-gold)" />
             <span>E-Brochure</span>
           </button>
 
@@ -166,13 +173,14 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
               color: '#ffffff',
               border: 'none',
               borderRadius: 'var(--radius-full)',
-              padding: '0.25rem 0.75rem',
-              fontSize: '0.72rem',
+              padding: '0.2rem 0.65rem',
+              fontSize: '0.7rem',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '0.04em',
               cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(237, 28, 37, 0.4)'
+              boxShadow: '0 2px 8px rgba(237, 28, 37, 0.4)',
+              whiteSpace: 'nowrap'
             }}
             className="topbar-desktop-only"
           >
@@ -187,8 +195,13 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
             display: flex !important;
           }
         }
-        @media (min-width: 1024px) {
+        @media (min-width: 1040px) {
           .topbar-desktop-only {
+            display: flex !important;
+          }
+        }
+        @media (min-width: 1220px) {
+          .topbar-lineage-badge {
             display: flex !important;
           }
         }
@@ -196,3 +209,4 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
     </div>
   );
 };
+
