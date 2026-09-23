@@ -10,7 +10,6 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Sparkles,
-  Compass,
   TreePine,
   Medal,
   Info,
@@ -38,6 +37,8 @@ interface SlideData {
   ctaPrimaryText: string;
   ctaSecondaryText: string;
   categoryTag: string;
+  photoUrl: string;
+  photoCaption: string;
 }
 
 export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroProps) => {
@@ -55,52 +56,58 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
 
   const wingInfo = getWingForAge(selectedAge);
 
-  // 100% Authentic Slides directly derived from lakshayaschool.com
+  // 100% Authentic Slides with Real School Photos & Verbatim Text from lakshayaschool.com
   const slides: SlideData[] = [
     {
       id: 'vision',
       badgeIcon: Award,
-      badgeText: 'An Educational Initiative of Agarwal Group (35-Yr Lineage)',
-      badgeColor: 'var(--accent-gold)',
+      badgeText: 'Agarwal Group Educational Initiative (35-Yr Lineage)',
+      badgeColor: '#fbbf24',
       titlePrimary: 'Nurturing',
       titleHighlight: 'Compassionate, Ethical',
       titleSecondary: 'Global Citizens.',
       mottoQuote: 'Knowledge is the Supreme Goal • Behind the Name : AIM HIGH',
       description: 'Lakshaya International School offers an exceptional educational environment on Sardar Patel Ring Road, blending 35 years of Agrawal Group trust with student-first pedagogy: "A well formed mind is better than just a well filled one."',
-      trustPoints: ['Putting Children First', '2-Acre Certified Campus', '1:15 Teacher-Student Ratio'],
+      trustPoints: ['Putting Children First', '2-Acre Certified Campus', '1:15 Ratio'],
       ctaPrimaryText: 'Admissions Open 2025-26',
-      ctaSecondaryText: 'Download Official E-Brochure',
-      categoryTag: '01. Vision & Credo'
+      ctaSecondaryText: 'Official E-Brochure',
+      categoryTag: '01. Vision & Credo',
+      photoUrl: '/images/school_hero_students.jpg',
+      photoCaption: 'Happy Lakshaya Students • S.P. Ring Road Campus'
     },
     {
       id: 'eci-award',
       badgeIcon: Trophy,
       badgeText: '27th ECI National Education Award Winner',
-      badgeColor: '#fbbf24',
+      badgeColor: '#f59e0b',
       titlePrimary: 'Honoured as',
       titleHighlight: 'Best Pre-School',
       titleSecondary: '& Best Principal Leadership.',
       mottoQuote: 'Ms. Neha Agrawal Conferred with "Best Pre School Principal" Award',
       description: 'Recognized at the prestigious 27th ECI National Education Awards. Guided by our 5 foundational beliefs: every child is born potentially gifted, unique, and learns best in a joyous, curious school environment.',
-      trustPoints: ['ECI Award Winner', '5 Foundational Beliefs', 'Early Years Excellence'],
-      ctaPrimaryText: 'Explore Pre-Primary Wing',
-      ctaSecondaryText: 'Read Principal Address',
-      categoryTag: '02. National Award'
+      trustPoints: ['ECI Award Winner', '5 Core Beliefs', 'Early Years Excellence'],
+      ctaPrimaryText: 'Explore Pre-Primary',
+      ctaSecondaryText: 'Principal Welcome Address',
+      categoryTag: '02. National Award',
+      photoUrl: '/images/science_quiz.jpg',
+      photoCaption: 'Recognized for Child-Centric Pedagogical Excellence'
     },
     {
       id: 'mission-pentagon',
       badgeIcon: Sparkles,
       badgeText: 'Collaborative & Inquisitive 21st-Century Learning',
-      badgeColor: '#60a5fa',
+      badgeColor: '#38bdf8',
       titlePrimary: 'Preparing for a',
       titleHighlight: 'Tech-Savvy World',
       titleSecondary: 'Through Inquisitive Scholarship.',
       mottoQuote: 'Cognitive • Social • Emotional • Physical • Ethical Development',
       description: 'Our mission is to prepare students for a fast changing, dynamic world through self-reflective inquiry. Our signature Developmental Pentagon ensures harmonious growth across all 5 human faculties.',
-      trustPoints: ['Signature Pentagon Model', 'Science & Hi-Tech IT Labs', 'STEM Inquiry Curriculum'],
-      ctaPrimaryText: 'Explore Pentagon Model',
+      trustPoints: ['Pentagon Model', 'Hi-Tech IT Labs', 'STEM Inquiry'],
+      ctaPrimaryText: 'Explore Pentagon',
       ctaSecondaryText: 'Download Curriculum',
-      categoryTag: '03. Mission & Pentagon'
+      categoryTag: '03. Pentagon',
+      photoUrl: '/images/art_exhibition.jpg',
+      photoCaption: 'Annual Art Exhibition & Creative Expression Studios'
     },
     {
       id: 'campus-safety',
@@ -112,25 +119,29 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
       titleSecondary: '& Green Nature Immersion.',
       mottoQuote: 'Sunlit Smart Classrooms & Shilaj Agricultural Eco-Farm Hub',
       description: 'A certified earthquake-resistant campus featuring expansive daylight-filled classrooms, verified GPS-tracked bus fleet, dedicated martial arts dojo, and unique outdoor botanical learning at Shilaj Farm.',
-      trustPoints: ['Certified Seismic Resistance', 'Shilaj Agricultural Farm', 'Open-Access Library System'],
-      ctaPrimaryText: 'Book Guided Campus Visit',
-      ctaSecondaryText: 'Inspect Campus Facilities',
-      categoryTag: '04. Safe Smart Campus'
+      trustPoints: ['Seismic Safe', 'Shilaj Eco Farm', 'Open-Access Library'],
+      ctaPrimaryText: 'Book Campus Tour',
+      ctaSecondaryText: 'Inspect Facilities',
+      categoryTag: '04. Campus & Farm',
+      photoUrl: '/images/shilaj_farm.jpg',
+      photoCaption: 'Hands-on Agriculture & Botany at Shilaj Organic Farm'
     },
     {
       id: 'achievements',
       badgeIcon: Medal,
-      badgeText: 'Discovery Channel Wild Wisdom & 22 All-India Karate Medals',
-      badgeColor: '#f59e0b',
+      badgeText: '22 All-India Karate Medals & Wild Wisdom Quiz Podiums',
+      badgeColor: '#fbbf24',
       titlePrimary: 'Where Students Win',
       titleHighlight: 'National Podiums',
       titleSecondary: 'In Academics & Martial Arts.',
       mottoQuote: 'State Finalists in Wild Wisdom Quiz • 51 National SpellBee Honors',
       description: 'Lakshaya students consistently triumph: 22 medals at the 2nd All-India Shito-Ryu Karate Championship, 4 state finalists & 225+ Discovery Channel quiz awards, and Khel Maha Kumbh gold medals.',
-      trustPoints: ['22 All-India Karate Medals', 'Wild Wisdom Quiz Finalists', '51 National SpellBee Laurels'],
-      ctaPrimaryText: 'Join Lakshaya Champions',
-      ctaSecondaryText: 'View Hall of Laurels',
-      categoryTag: '05. Hall of Laurels'
+      trustPoints: ['22 All-India Medals', 'Wild Wisdom Finalists', '51 SpellBee Awards'],
+      ctaPrimaryText: 'Lakshaya Champions',
+      ctaSecondaryText: 'Hall of Laurels',
+      categoryTag: '05. Laurels',
+      photoUrl: '/images/karate_championship.jpg',
+      photoCaption: 'All-India Shito-Ryu Karate Champions with Sensei'
     }
   ];
 
@@ -196,10 +207,11 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
       onMouseLeave={() => setIsPaused(false)}
       style={{
         position: 'relative',
-        background: 'linear-gradient(135deg, #061122 0%, #0d203f 45%, #050e1b 100%)',
+        // Authentic Prestigious Collegiate Navy with Warm Subtle Tone (Not Gaming Cyber Glows)
+        background: 'linear-gradient(135deg, #07152b 0%, #0d2240 60%, #081730 100%)',
         color: '#ffffff',
         overflow: 'hidden',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+        borderBottom: '3px solid #d97706', // Royal Academic Gold Stripe
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -208,16 +220,16 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
       }}
       className="single-screen-hero"
     >
-      {/* Background Sanskrit Seal Watermark */}
+      {/* Classical Academic Guilloche & Sanskrit Motto Watermark */}
       <div style={{
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 'clamp(400px, 60vw, 750px)',
-        height: 'clamp(400px, 60vw, 750px)',
+        width: 'clamp(320px, 45vw, 650px)',
+        height: 'clamp(320px, 45vw, 650px)',
         borderRadius: '50%',
-        border: '1px dashed rgba(245, 158, 11, 0.08)',
+        border: '1px solid rgba(217, 119, 6, 0.08)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -225,51 +237,23 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
         zIndex: 1
       }}>
         <div style={{
-          width: '80%',
-          height: '80%',
+          width: '84%',
+          height: '84%',
           borderRadius: '50%',
-          border: '1px solid rgba(255, 255, 255, 0.04)',
+          border: '1px dashed rgba(255, 255, 255, 0.05)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: "'Cinzel', serif",
-          fontSize: 'clamp(1.5rem, 4vw, 3rem)',
-          fontWeight: 900,
-          color: 'rgba(255, 255, 255, 0.02)',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
+          fontSize: 'clamp(1rem, 2.5vw, 2rem)',
+          fontWeight: 800,
+          color: 'rgba(255, 255, 255, 0.03)',
+          letterSpacing: '0.18em',
           textAlign: 'center'
         }}>
           LAKSHAYA • AHMEDABAD
         </div>
       </div>
-
-      {/* Ambient Lighting Gradients */}
-      <div style={{
-        position: 'absolute',
-        top: '-10%',
-        right: '-5%',
-        width: 'clamp(300px, 45vw, 550px)',
-        height: 'clamp(300px, 45vw, 550px)',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(237, 28, 37, 0.12) 0%, rgba(245, 158, 11, 0.08) 50%, rgba(0, 0, 0, 0) 75%)',
-        filter: 'blur(50px)',
-        pointerEvents: 'none',
-        zIndex: 2
-      }} />
-
-      <div style={{
-        position: 'absolute',
-        bottom: '-15%',
-        left: '-5%',
-        width: 'clamp(280px, 40vw, 500px)',
-        height: 'clamp(280px, 40vw, 500px)',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(30, 64, 175, 0.22) 0%, rgba(0, 0, 0, 0) 70%)',
-        filter: 'blur(60px)',
-        pointerEvents: 'none',
-        zIndex: 2
-      }} />
 
       {/* Main Slide Content Area */}
       <div className="container" style={{ 
@@ -286,14 +270,14 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
         height: '100%',
         boxSizing: 'border-box'
       }}>
-        {/* Top Header Row with Category Badge + Official Portal Tag */}
+        {/* Top Institutional Trust Strip */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '0.35rem',
-          marginBottom: '0.25rem'
+          flexWrap: 'nowrap',
+          gap: '0.4rem',
+          marginBottom: '0.2rem'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
             {/* Active Slide Category Pill */}
@@ -301,15 +285,14 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.3rem',
-              backgroundColor: 'rgba(245, 158, 11, 0.15)',
-              border: '1px solid rgba(245, 158, 11, 0.4)',
-              padding: '0.12rem 0.55rem',
-              borderRadius: 'var(--radius-full)',
-              backdropFilter: 'blur(8px)'
+              backgroundColor: 'rgba(217, 119, 6, 0.18)',
+              border: '1px solid rgba(245, 158, 11, 0.45)',
+              padding: '0.1rem 0.5rem',
+              borderRadius: 'var(--radius-full)'
             }}>
               <slide.badgeIcon size={12} color={slide.badgeColor} style={{ flexShrink: 0 }} />
               <span style={{
-                fontSize: '0.68rem',
+                fontSize: '0.66rem',
                 fontWeight: 800,
                 color: slide.badgeColor,
                 letterSpacing: '0.03em',
@@ -323,45 +306,51 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.3rem',
-              backgroundColor: 'rgba(237, 28, 37, 0.12)',
+              backgroundColor: 'rgba(237, 28, 37, 0.16)',
               border: '1px solid rgba(237, 28, 37, 0.35)',
-              padding: '0.12rem 0.5rem',
+              padding: '0.1rem 0.45rem',
               borderRadius: 'var(--radius-full)'
             }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#ef4444', display: 'inline-block' }} />
-              <span style={{ fontSize: '0.66rem', fontWeight: 800, color: '#fca5a5', textTransform: 'uppercase' }}>
-                Official Portal • S.P. Ring Road
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#ed1c25', display: 'inline-block' }} />
+              <span style={{ fontSize: '0.64rem', fontWeight: 800, color: '#fca5a5', textTransform: 'uppercase' }}>
+                CBSE • S.P. Ring Road
               </span>
             </div>
           </div>
+
+          <div style={{ display: 'none', alignItems: 'center', gap: '0.4rem', fontSize: '0.66rem', color: '#cbd5e1' }} className="hero-top-seal">
+            <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>★ Admissions 2025-26 Open</span>
+          </div>
         </div>
 
+        {/* Center Grid: Left Text Column + Right Real School Photo Showcase */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: 'clamp(0.6rem, 1.5vw, 1.25rem)',
+          gap: 'clamp(0.6rem, 1.4vw, 1.25rem)',
           alignItems: 'center',
           flex: 1
         }} className="hero-slide-grid">
           
-          {/* Left Column: Headline & Official School Information */}
+          {/* Left Column: Official School Pedagogy & Headings */}
           <div style={{ minWidth: 0, maxWidth: '100%' }}>
             
             {/* Dynamic Headline */}
             <h1 style={{
-              fontSize: 'clamp(1.15rem, 1.9vw, 1.7rem)',
+              fontSize: 'clamp(1.15rem, 1.75vw, 1.6rem)',
               fontWeight: 800,
-              lineHeight: 1.16,
+              lineHeight: 1.15,
               color: '#ffffff',
               letterSpacing: '-0.02em',
-              marginBottom: '0.22rem',
+              marginBottom: '0.2rem',
               wordBreak: 'break-word'
             }}>
               {slide.titlePrimary}{' '}
               <span style={{
-                background: 'linear-gradient(135deg, #fde047 0%, #f59e0b 60%, #ed1c25 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                color: '#fde047',
+                textDecoration: 'underline',
+                textDecorationColor: '#ed1c25',
+                textUnderlineOffset: '3px',
                 display: 'inline-block'
               }}>
                 {slide.titleHighlight}
@@ -373,11 +362,11 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
             <div style={{
               display: 'inline-block',
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(0.68rem, 1vw, 0.78rem)',
-              color: 'rgba(254, 243, 199, 0.95)',
+              fontSize: 'clamp(0.66rem, 0.95vw, 0.74rem)',
+              color: '#fef08a',
               borderLeft: '2.5px solid #ed1c25',
               paddingLeft: '0.45rem',
-              marginBottom: '0.22rem',
+              marginBottom: '0.2rem',
               letterSpacing: '0.02em',
               fontStyle: 'italic',
               lineHeight: 1.25
@@ -387,10 +376,10 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
 
             {/* Verbatim Description from Real Site */}
             <p style={{
-              fontSize: 'clamp(0.68rem, 0.95vw, 0.76rem)',
+              fontSize: 'clamp(0.66rem, 0.9vw, 0.73rem)',
               color: '#cbd5e1',
               lineHeight: 1.35,
-              marginBottom: '0.3rem',
+              marginBottom: '0.28rem',
               maxWidth: '560px'
             }}>
               {slide.description}
@@ -402,18 +391,18 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
               flexWrap: 'wrap',
               gap: '0.2rem 0.6rem',
               marginBottom: '0.35rem',
-              fontSize: 'clamp(0.65rem, 0.9vw, 0.7rem)',
-              color: '#e2e8f0'
+              fontSize: 'clamp(0.64rem, 0.85vw, 0.68rem)',
+              color: '#f1f5f9'
             }}>
               {slide.trustPoints.map((pt, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                  <CheckCircle2 size={12} color="var(--accent-gold)" style={{ flexShrink: 0 }} />
-                  <span style={{ fontWeight: 600 }}>{pt}</span>
+                  <CheckCircle2 size={12} color="#fbbf24" style={{ flexShrink: 0 }} />
+                  <span style={{ fontWeight: 700 }}>{pt}</span>
                 </div>
               ))}
             </div>
 
-            {/* Action Buttons */}
+            {/* Action Buttons Row */}
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -430,8 +419,8 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 'var(--radius-full)',
-                  padding: '0.32rem 0.8rem',
-                  fontSize: '0.75rem',
+                  padding: '0.32rem 0.75rem',
+                  fontSize: '0.74rem',
                   fontWeight: 800,
                   cursor: 'pointer',
                   boxShadow: '0 2px 8px rgba(237, 28, 37, 0.35)'
@@ -445,12 +434,12 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
                 onClick={handleSecondaryCTA}
                 className="btn btn-outline-white"
                 style={{
-                  padding: '0.32rem 0.75rem',
-                  fontSize: '0.74rem',
+                  padding: '0.32rem 0.7rem',
+                  fontSize: '0.72rem',
                   borderRadius: 'var(--radius-full)'
                 }}
               >
-                <FileText size={13} />
+                <FileText size={12} />
                 <span>{slide.ctaSecondaryText}</span>
               </button>
 
@@ -459,12 +448,12 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
                 <button
                   onClick={onOpenFastFacts}
                   style={{
-                    background: 'transparent',
-                    border: '1px dashed rgba(245, 158, 11, 0.5)',
-                    color: 'var(--accent-gold)',
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(251, 191, 36, 0.45)',
+                    color: '#fbbf24',
                     borderRadius: 'var(--radius-full)',
-                    padding: '0.32rem 0.65rem',
-                    fontSize: '0.72rem',
+                    padding: '0.32rem 0.6rem',
+                    fontSize: '0.7rem',
                     fontWeight: 700,
                     cursor: 'pointer',
                     display: 'flex',
@@ -473,381 +462,309 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
                   }}
                   title="Open Lakshaya Fast Facts"
                 >
-                  <Info size={12} />
+                  <Info size={11} />
                   <span>Fast Facts</span>
                 </button>
               )}
             </div>
           </div>
 
-          {/* Right Column: Slide-Specific Visual Feature Card */}
+          {/* Right Column: Genuine School Photo Frame + Compact Interactive Widget */}
           <div style={{ minWidth: 0, maxWidth: '100%', position: 'relative' }}>
-            
-            {/* Slide 1 Visual: Grade & Age Calculator */}
-            {currentSlide === 0 && (
-              <div style={{
-                backgroundColor: 'rgba(11, 23, 44, 0.82)',
-                backdropFilter: 'blur(16px)',
-                border: '1.5px solid rgba(245, 158, 11, 0.3)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.55rem 0.8rem',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
-                maxWidth: '100%',
-                boxSizing: 'border-box'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem', flexWrap: 'wrap', gap: '0.25rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                    <Calculator size={14} color="var(--accent-gold)" />
-                    <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
-                      Grade & Age Eligibility Matcher
-                    </h3>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.2rem',
-                    backgroundColor: 'rgba(237, 28, 37, 0.2)',
-                    color: '#fca5a5',
-                    padding: '0.08rem 0.4rem',
-                    borderRadius: 'var(--radius-full)',
-                    fontSize: '0.64rem',
-                    fontWeight: 800
-                  }}>
-                    <span>Admissions 2025-26</span>
-                  </div>
-                </div>
-
-                <div style={{ marginBottom: '0.35rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', marginBottom: '0.2rem', color: '#cbd5e1' }}>
-                    <span>Child's Age:</span>
-                    <strong style={{ color: 'var(--accent-gold)' }}>{selectedAge} Years Old</strong>
-                  </div>
-
-                  <div style={{
-                    display: 'flex',
-                    gap: '0.2rem',
-                    overflowX: 'auto',
-                    paddingBottom: '0.1rem',
-                    maxWidth: '100%',
-                    scrollbarWidth: 'none'
-                  }}>
-                    {[2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16].map((age) => (
-                      <button
-                        key={age}
-                        onClick={() => setSelectedAge(age)}
-                        style={{
-                          width: '21px',
-                          height: '21px',
-                          borderRadius: '50%',
-                          border: selectedAge === age ? '2px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.2)',
-                          backgroundColor: selectedAge === age ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.08)',
-                          color: selectedAge === age ? '#0b1a30' : '#ffffff',
-                          fontWeight: 800,
-                          fontSize: '0.66rem',
-                          cursor: 'pointer',
-                          flexShrink: 0
-                        }}
-                      >
-                        {age}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div style={{
-                  backgroundColor: 'rgba(6, 14, 26, 0.85)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '0.35rem 0.55rem',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  marginBottom: '0.35rem'
-                }}>
-                  <div style={{ fontSize: '0.58rem', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: 800, letterSpacing: '0.04em' }}>
-                    Recommended Wing & Teacher Ratio:
-                  </div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff', margin: '0.05rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>{wingInfo.wing}</span>
-                    <span style={{ fontSize: '0.64rem', color: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.15)', padding: '0.05rem 0.3rem', borderRadius: '4px' }}>
-                      Ratio {wingInfo.ratio}
-                    </span>
-                  </div>
-                  <p style={{ fontSize: '0.66rem', color: '#cbd5e1', lineHeight: 1.25, margin: 0 }}>
-                    {wingInfo.focus}
-                  </p>
-                </div>
-
-                <button
-                  onClick={onOpenAdmission}
+            <div style={{
+              backgroundColor: '#0c1d37',
+              border: '1.5px solid rgba(251, 191, 36, 0.35)',
+              borderRadius: 'var(--radius-md)',
+              overflow: 'hidden',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              boxSizing: 'border-box'
+            }}>
+              {/* Authentic School Photo Banner */}
+              <div style={{ position: 'relative', height: '135px', overflow: 'hidden', backgroundColor: '#07152b' }}>
+                <img 
+                  src={slide.photoUrl} 
+                  alt={slide.photoCaption}
+                  loading="eager"
                   style={{
                     width: '100%',
-                    backgroundColor: '#ed1c25',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.72rem',
-                    fontWeight: 800,
-                    padding: '0.32rem',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '0.3rem'
-                  }}
-                >
-                  <span>Apply for {wingInfo.wing.split('(')[0]}</span>
-                  <ArrowRight size={12} />
-                </button>
-              </div>
-            )}
-
-            {/* Slide 2 Visual: 27th ECI Award & 5 Foundational Beliefs */}
-            {currentSlide === 1 && (
-              <div style={{
-                backgroundColor: 'rgba(11, 23, 44, 0.82)',
-                backdropFilter: 'blur(16px)',
-                border: '1.5px solid rgba(251, 191, 36, 0.35)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.55rem 0.8rem',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
-                  <Trophy size={14} color="var(--accent-gold)" />
-                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
-                    27th ECI Award • Our 5 Core Beliefs
-                  </h3>
-                </div>
-
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block'
+                  }} 
+                />
+                
+                {/* Official Photo Caption Badge */}
                 <div style={{
-                  backgroundColor: 'rgba(245, 158, 11, 0.12)',
-                  border: '1px solid rgba(245, 158, 11, 0.3)',
-                  padding: '0.28rem 0.45rem',
-                  borderRadius: 'var(--radius-xs)',
-                  marginBottom: '0.3rem'
+                  position: 'absolute',
+                  bottom: '0.4rem',
+                  left: '0.5rem',
+                  right: '0.5rem',
+                  backgroundColor: 'rgba(7, 21, 43, 0.88)',
+                  backdropFilter: 'blur(6px)',
+                  padding: '0.15rem 0.45rem',
+                  borderRadius: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  border: '1px solid rgba(255,255,255,0.12)'
                 }}>
-                  <div style={{ fontSize: '0.64rem', fontWeight: 800, color: 'var(--accent-gold)' }}>
-                    ECI National Education Award Citation:
-                  </div>
-                  <div style={{ fontSize: '0.68rem', color: '#ffffff', fontWeight: 600, marginTop: '0.04rem', lineHeight: 1.2 }}>
-                    Ms. Neha Agrawal honoured as <em>Best Pre School Principal</em> & Lakshaya recognized as <em>Best Pre School</em>.
-                  </div>
+                  <span style={{ fontSize: '0.64rem', color: '#f8fafc', fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {slide.photoCaption}
+                  </span>
+                  <span style={{ fontSize: '0.58rem', color: '#fbbf24', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    Verified
+                  </span>
                 </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.12rem', marginBottom: '0.35rem' }}>
-                  {[
-                    '1. Every child is born potentially gifted.',
-                    '2. Each child is a unique individual.',
-                    '3. Fostering curiosity makes the child an eager learner.',
-                    '4. Children learn best when they are happy.',
-                    '5. PUTTING CHILDREN FIRST.'
-                  ].map((belief, idx) => (
-                    <div key={idx} style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.3rem',
-                      padding: '0.12rem 0.35rem',
-                      borderRadius: 'var(--radius-xs)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                      fontSize: '0.65rem',
-                      color: idx === 4 ? 'var(--accent-gold)' : '#e2e8f0',
-                      fontWeight: idx === 4 ? 800 : 500
-                    }}>
-                      <HeartHandshake size={10} color={idx === 4 ? 'var(--accent-gold)' : '#60a5fa'} style={{ flexShrink: 0 }} />
-                      <span>{belief}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <a
-                  href="#leadership"
-                  className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
-                >
-                  <span>Read Ms. Neha Agrawal's Welcome Address</span>
-                  <ArrowRight size={11} />
-                </a>
               </div>
-            )}
 
-            {/* Slide 3 Visual: The 5 Pentagon Dimensions */}
-            {currentSlide === 2 && (
-              <div style={{
-                backgroundColor: 'rgba(11, 23, 44, 0.82)',
-                backdropFilter: 'blur(16px)',
-                border: '1.5px solid rgba(96, 165, 250, 0.35)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.55rem 0.8rem',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
-                  <Sparkles size={14} color="#60a5fa" />
-                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
-                    The 5 Pentagon Dimensions
-                  </h3>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.14rem', marginBottom: '0.35rem' }}>
-                  {[
-                    { name: '1. Cognitive Acuity', desc: 'Critical inquiry, STEM & math logic', color: '#60a5fa' },
-                    { name: '2. Emotional Balance', desc: 'Resilience, mindfulness & self-regulation', color: '#f472b6' },
-                    { name: '3. Physical Vigor', desc: 'Karate dojo, athletics & fitness mastery', color: '#34d399' },
-                    { name: '4. Social Harmony', desc: 'Collaborative bonding & Shilaj Farm outings', color: '#fbbf24' },
-                    { name: '5. Ethical Soul', desc: 'Universal values, integrity & empathy', color: '#a78bfa' }
-                  ].map((p, idx) => (
-                    <div key={idx} style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.35rem',
-                      padding: '0.14rem 0.35rem',
-                      borderRadius: 'var(--radius-xs)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      borderLeft: `2.5px solid ${p.color}`
-                    }}>
-                      <div style={{ fontWeight: 800, fontSize: '0.68rem', color: '#ffffff' }}>{p.name}:</div>
-                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>{p.desc}</div>
+              {/* Compact Interactive Area below the photograph */}
+              <div style={{ padding: '0.45rem 0.65rem', backgroundColor: 'rgba(8, 20, 39, 0.95)' }}>
+                {/* Slide 1 Widget: Age & Grade Calculator */}
+                {currentSlide === 0 && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.72rem', fontWeight: 800, color: '#fbbf24' }}>
+                        <Calculator size={12} />
+                        <span>Grade Eligibility Matcher</span>
+                      </div>
+                      <span style={{ fontSize: '0.65rem', color: '#cbd5e1' }}>
+                        Age: <strong style={{ color: '#ffffff' }}>{selectedAge} Yrs</strong>
+                      </span>
                     </div>
-                  ))}
-                </div>
 
-                <a
-                  href="#pentagon"
-                  className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
-                >
-                  <span>Interact with Pentagon Geometry</span>
-                  <ArrowRight size={12} />
-                </a>
+                    <div style={{ display: 'flex', gap: '0.18rem', overflowX: 'auto', paddingBottom: '0.1rem', marginBottom: '0.25rem', scrollbarWidth: 'none' }}>
+                      {[2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16].map((age) => (
+                        <button
+                          key={age}
+                          onClick={() => setSelectedAge(age)}
+                          style={{
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
+                            border: selectedAge === age ? '2px solid #fbbf24' : '1px solid rgba(255, 255, 255, 0.25)',
+                            backgroundColor: selectedAge === age ? '#fbbf24' : 'rgba(255, 255, 255, 0.08)',
+                            color: selectedAge === age ? '#07152b' : '#ffffff',
+                            fontWeight: 800,
+                            fontSize: '0.64rem',
+                            cursor: 'pointer',
+                            flexShrink: 0
+                          }}
+                        >
+                          {age}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'rgba(255,255,255,0.06)', padding: '0.25rem 0.45rem', borderRadius: '4px' }}>
+                      <div style={{ fontSize: '0.72rem', color: '#ffffff', fontWeight: 800 }}>
+                        {wingInfo.wing.split('(')[0]} <span style={{ fontSize: '0.62rem', color: '#38bdf8' }}>({wingInfo.ratio})</span>
+                      </div>
+                      <button
+                        onClick={onOpenAdmission}
+                        style={{
+                          backgroundColor: '#ed1c25',
+                          color: '#ffffff',
+                          border: 'none',
+                          borderRadius: '3px',
+                          padding: '0.18rem 0.45rem',
+                          fontSize: '0.66rem',
+                          fontWeight: 800,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Apply Now
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Slide 2 Widget: 5 Foundational Beliefs */}
+                {currentSlide === 1 && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.72rem', fontWeight: 800, color: '#fbbf24' }}>
+                        <Trophy size={12} />
+                        <span>Our 5 Foundational Beliefs</span>
+                      </div>
+                      <span style={{ fontSize: '0.6rem', color: '#34d399', fontWeight: 800 }}>ECI Award Winner</span>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', marginBottom: '0.25rem' }}>
+                      <div style={{ fontSize: '0.65rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <HeartHandshake size={10} color="#fbbf24" />
+                        <span>1. Every child is born potentially gifted.</span>
+                      </div>
+                      <div style={{ fontSize: '0.65rem', color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <HeartHandshake size={10} color="#fbbf24" />
+                        <span>2. Children learn best when they are happy.</span>
+                      </div>
+                      <div style={{ fontSize: '0.65rem', color: '#fbbf24', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <HeartHandshake size={10} color="#fbbf24" />
+                        <span>3. PUTTING CHILDREN FIRST.</span>
+                      </div>
+                    </div>
+
+                    <a
+                      href="#leadership"
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        backgroundColor: 'rgba(255,255,255,0.08)',
+                        color: '#ffffff',
+                        padding: '0.2rem',
+                        borderRadius: '3px',
+                        fontSize: '0.66rem',
+                        fontWeight: 700,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Read Principal Neha Agrawal's Address →
+                    </a>
+                  </div>
+                )}
+
+                {/* Slide 3 Widget: Pentagon Model */}
+                {currentSlide === 2 && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.72rem', fontWeight: 800, color: '#38bdf8' }}>
+                        <Sparkles size={12} />
+                        <span>The Developmental Pentagon</span>
+                      </div>
+                      <span style={{ fontSize: '0.6rem', color: '#fde047', fontWeight: 800 }}>5 Faculties</span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.2rem', marginBottom: '0.25rem' }}>
+                      <span style={{ fontSize: '0.64rem', color: '#e2e8f0', borderLeft: '2px solid #38bdf8', paddingLeft: '0.25rem' }}>Cognitive & STEM</span>
+                      <span style={{ fontSize: '0.64rem', color: '#e2e8f0', borderLeft: '2px solid #f472b6', paddingLeft: '0.25rem' }}>Emotional Balance</span>
+                      <span style={{ fontSize: '0.64rem', color: '#e2e8f0', borderLeft: '2px solid #34d399', paddingLeft: '0.25rem' }}>Physical Vigor</span>
+                      <span style={{ fontSize: '0.64rem', color: '#e2e8f0', borderLeft: '2px solid #fbbf24', paddingLeft: '0.25rem' }}>Social Harmony</span>
+                    </div>
+
+                    <a
+                      href="#pentagon"
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                        border: '1px solid rgba(56, 189, 248, 0.3)',
+                        color: '#38bdf8',
+                        padding: '0.2rem',
+                        borderRadius: '3px',
+                        fontSize: '0.66rem',
+                        fontWeight: 700,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Interact with Pentagon Geometry →
+                    </a>
+                  </div>
+                )}
+
+                {/* Slide 4 Widget: Campus & Shilaj Farm */}
+                {currentSlide === 3 && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.72rem', fontWeight: 800, color: '#34d399' }}>
+                        <TreePine size={12} />
+                        <span>2-Acre Campus & Shilaj Farm</span>
+                      </div>
+                      <span style={{ fontSize: '0.6rem', color: '#cbd5e1' }}>S.P. Ring Road</span>
+                    </div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem', fontSize: '0.65rem', color: '#e2e8f0' }}>
+                      <span style={{ backgroundColor: 'rgba(255,255,255,0.06)', padding: '0.15rem 0.35rem', borderRadius: '3px' }}>🏛️ Seismic Certified</span>
+                      <span style={{ backgroundColor: 'rgba(255,255,255,0.06)', padding: '0.15rem 0.35rem', borderRadius: '3px' }}>🌿 Shilaj Eco-Hub</span>
+                    </div>
+
+                    <a
+                      href="#campus"
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        backgroundColor: 'rgba(52, 211, 153, 0.15)',
+                        border: '1px solid rgba(52, 211, 153, 0.3)',
+                        color: '#34d399',
+                        padding: '0.2rem',
+                        borderRadius: '3px',
+                        fontSize: '0.66rem',
+                        fontWeight: 700,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      View Campus Facilities & Labs →
+                    </a>
+                  </div>
+                )}
+
+                {/* Slide 5 Widget: Laurels */}
+                {currentSlide === 4 && (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.72rem', fontWeight: 800, color: '#fbbf24' }}>
+                        <Medal size={12} />
+                        <span>National Laurels</span>
+                      </div>
+                      <span style={{ fontSize: '0.6rem', color: '#38bdf8', fontWeight: 800 }}>250+ Awards</span>
+                    </div>
+
+                    <div style={{ fontSize: '0.64rem', color: '#e2e8f0', marginBottom: '0.25rem', lineHeight: 1.25 }}>
+                      • <strong>22 Medals</strong> at All-India Karate Championship<br />
+                      • <strong>4 State Finalists</strong> & 225+ Discovery Quiz Honors
+                    </div>
+
+                    <a
+                      href="#achievements"
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        backgroundColor: 'rgba(251, 191, 36, 0.15)',
+                        border: '1px solid rgba(251, 191, 36, 0.3)',
+                        color: '#fbbf24',
+                        padding: '0.2rem',
+                        borderRadius: '3px',
+                        fontSize: '0.66rem',
+                        fontWeight: 700,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Inspect Complete Hall of Laurels →
+                    </a>
+                  </div>
+                )}
               </div>
-            )}
-
-            {/* Slide 4 Visual: Campus Safety & Eco Infrastructure */}
-            {currentSlide === 3 && (
-              <div style={{
-                backgroundColor: 'rgba(11, 23, 44, 0.82)',
-                backdropFilter: 'blur(16px)',
-                border: '1.5px solid rgba(52, 211, 153, 0.35)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.55rem 0.8rem',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
-                  <ShieldCheck size={14} color="#34d399" />
-                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
-                    Campus Safety & Eco Infrastructure
-                  </h3>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem', marginBottom: '0.35rem' }}>
-                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.35rem 0.45rem', borderRadius: 'var(--radius-xs)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <ShieldCheck size={14} color="#34d399" style={{ marginBottom: '0.1rem' }} />
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#ffffff' }}>Seismic Safe</div>
-                    <div style={{ fontSize: '0.64rem', color: '#cbd5e1', lineHeight: 1.2 }}>Certified earthquake safety</div>
-                  </div>
-
-                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.35rem 0.45rem', borderRadius: 'var(--radius-xs)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <TreePine size={14} color="#34d399" style={{ marginBottom: '0.1rem' }} />
-                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#ffffff' }}>Shilaj Farm</div>
-                    <div style={{ fontSize: '0.64rem', color: '#cbd5e1', lineHeight: 1.2 }}>Hands-on eco field trips</div>
-                  </div>
-                </div>
-
-                <div style={{ fontSize: '0.67rem', color: '#cbd5e1', marginBottom: '0.35rem', lineHeight: 1.25 }}>
-                  📍 <strong>2 Acres Campus:</strong> S.P. Ring Road, Opp. Applewoods, Ahmedabad.
-                </div>
-
-                <a
-                  href="#campus"
-                  className="btn btn-primary"
-                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
-                >
-                  <Compass size={12} />
-                  <span>Inspect Campus Amenities & Labs</span>
-                </a>
-              </div>
-            )}
-
-            {/* Slide 5 Visual: Medals & Trophy Showcase */}
-            {currentSlide === 4 && (
-              <div style={{
-                backgroundColor: 'rgba(11, 23, 44, 0.82)',
-                backdropFilter: 'blur(16px)',
-                border: '1.5px solid rgba(251, 191, 36, 0.35)',
-                borderRadius: 'var(--radius-lg)',
-                padding: '0.55rem 0.8rem',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
-                  <Trophy size={14} color="var(--accent-gold)" />
-                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
-                    Verified Student Laurels (Real Records)
-                  </h3>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.18rem', marginBottom: '0.35rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(245, 158, 11, 0.1)', borderRadius: 'var(--radius-xs)' }}>
-                    <Medal size={14} color="#eab308" />
-                    <div>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>22 Medals • 2nd All-India Shito-Ryu Karate</div>
-                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>6 Gold, 7 Silver, 9 Bronze & 4 Certificates</div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: 'var(--radius-xs)' }}>
-                    <Trophy size={14} color="#60a5fa" />
-                    <div>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>Discovery Channel Wild Wisdom Quiz</div>
-                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>4 State Finalists & 225+ Certificates</div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderRadius: 'var(--radius-xs)' }}>
-                    <Award size={14} color="#34d399" />
-                    <div>
-                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>SpellBee National Level Examination</div>
-                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>51 National Level Certificates</div>
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="#achievements"
-                  className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
-                >
-                  <span>Inspect Complete Hall of Laurels</span>
-                  <ArrowRight size={12} />
-                </a>
-              </div>
-            )}
+            </div>
           </div>
         </div>
 
-        {/* Bottom Slide Controller & Quick Stats Bar */}
+        {/* Bottom Slide Controller Bar (Single Slim Row Docked at Bottom) */}
         <div style={{
-          marginTop: '0.2rem',
+          marginTop: '0.15rem',
           marginBottom: '0.1rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'nowrap',
-          gap: '0.4rem',
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(10px)',
+          gap: '0.35rem',
+          backgroundColor: 'rgba(7, 21, 43, 0.75)',
+          backdropFilter: 'blur(8px)',
           borderRadius: 'var(--radius-md)',
-          padding: '0.15rem 0.55rem',
+          padding: '0.12rem 0.5rem',
           border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          {/* Slide Indicators */}
+          {/* Slide Indicator Pills */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', flexWrap: 'nowrap', overflowX: 'auto', scrollbarWidth: 'none' }}>
             {slides.map((s, idx) => (
               <button
                 key={s.id}
                 onClick={() => setCurrentSlide(idx)}
                 style={{
-                  background: currentSlide === idx ? 'rgba(237, 28, 37, 0.3)' : 'rgba(255, 255, 255, 0.08)',
+                  background: currentSlide === idx ? 'rgba(237, 28, 37, 0.35)' : 'rgba(255, 255, 255, 0.08)',
                   border: currentSlide === idx ? '1px solid #ed1c25' : '1px solid transparent',
                   color: currentSlide === idx ? '#ffffff' : '#cbd5e1',
                   borderRadius: 'var(--radius-full)',
-                  padding: '0.1rem 0.42rem',
-                  fontSize: '0.64rem',
+                  padding: '0.08rem 0.38rem',
+                  fontSize: '0.62rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   transition: 'all var(--transition-fast)',
@@ -869,60 +786,44 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
             ))}
           </div>
 
-          {/* Prev/Next Controls + Quick Stat Pointers */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
-            <div style={{ display: 'none', alignItems: 'center', gap: '0.55rem' }} className="hero-stats-compact">
-              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
-                <strong style={{ color: '#ffffff' }}>2 Acres</strong> Campus
-              </span>
-              <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
-              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
-                <strong style={{ color: '#ffffff' }}>1:15</strong> Mentorship
-              </span>
-              <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
-              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
-                <strong style={{ color: 'var(--accent-gold)' }}>250+</strong> Honors
-              </span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-              <button
-                onClick={handlePrev}
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: '#ffffff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft size={12} />
-              </button>
-              <button
-                onClick={handleNext}
-                style={{
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: '#ffffff',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer'
-                }}
-                aria-label="Next Slide"
-              >
-                <ChevronRight size={12} />
-              </button>
-            </div>
+          {/* Prev/Next Navigation Arrows */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', flexShrink: 0 }}>
+            <button
+              onClick={handlePrev}
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft size={12} />
+            </button>
+            <button
+              onClick={handleNext}
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}
+              aria-label="Next Slide"
+            >
+              <ChevronRight size={12} />
+            </button>
           </div>
         </div>
       </div>
@@ -931,25 +832,23 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroP
         @media (min-width: 992px) {
           .single-screen-hero {
             height: calc(100vh - 95px) !important;
-            min-height: 400px !important;
+            min-height: 380px !important;
             max-height: calc(100vh - 95px) !important;
             overflow: hidden !important;
           }
           .hero-slide-grid {
-            grid-template-columns: 1.15fr 0.85fr !important;
+            grid-template-columns: 1.2fr 0.8fr !important;
             gap: 1rem !important;
           }
-        }
-        @media (min-width: 1220px) {
-          .hero-stats-compact {
+          .hero-top-seal {
             display: flex !important;
           }
         }
         @media (max-width: 991px) {
           .single-screen-hero {
             min-height: calc(100vh - 95px) !important;
-            padding-top: 0.4rem !important;
-            padding-bottom: 0.4rem !important;
+            padding-top: 0.35rem !important;
+            padding-bottom: 0.35rem !important;
           }
         }
       `}</style>

@@ -643,7 +643,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Art & Creativity",
     dateText: "Annual Campus Tradition",
     description: "Hundreds of student paintings, pottery sculptures, and mixed-media installations displayed at our campus for parents and art critics.",
-    image: "https://images.unsplash.com/photo-1460518451282-474b1500244a?auto=format&fit=crop&w=800&q=80",
+    image: "/images/art_exhibition.jpg",
     location: "Lakshaya Campus Atrium"
   },
   {
@@ -652,7 +652,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Experiential Learning",
     dateText: "Regular Outdoor Excursion",
     description: "Students spend an immersive day at Shilaj Farm learning organic agriculture, bio-diversity, botany, and ecological care.",
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80",
+    image: "/images/shilaj_farm.jpg",
     location: "Shilaj Organic Farm"
   },
   {
@@ -661,7 +661,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Celebrations",
     dateText: "December Festive Gala",
     description: "A beloved Lakshaya annual tradition fostering warmth, joyous cross-cultural celebration, games, bonding, and holiday cheer.",
-    image: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=800&q=80",
+    image: "/images/pajama_celebration.jpg",
     location: "Campus Amphitheater"
   },
   {
@@ -670,7 +670,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Sports",
     dateText: "National Competition",
     description: "Lakshaya champions clinched 6 Gold, 7 Silver, and 9 Bronze medals demonstrating martial discipline, focus, and athletic prowess.",
-    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=800&q=80",
+    image: "/images/karate_championship.jpg",
     location: "National Sports Arena"
   },
   {
@@ -679,7 +679,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Academic & Quiz",
     dateText: "State Finalists Event",
     description: "4 students advanced to state level finals and 225+ earned Discovery Channel certificates in environmental science knowledge.",
-    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80",
+    image: "/images/science_quiz.jpg",
     location: "State Academic Auditorium"
   },
   {
@@ -688,7 +688,7 @@ export const STUDENT_LIFE_EVENTS: LifeEvent[] = [
     category: "Sports",
     dateText: "Annual Rink Tournament",
     description: "Skating students train on our smooth championship rink and have brought home Silver and Bronze medals across district competitions.",
-    image: "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=800&q=80",
+    image: "/images/skating_championship.jpg",
     location: "Lakshaya Skating Rink"
   }
 ];
