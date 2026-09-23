@@ -49,7 +49,7 @@ export interface CampusFacility {
 export interface LifeEvent {
   id: string;
   title: string;
-  category: 'All' | 'Art & Creativity' | 'Experiential Learning' | 'Sports' | 'Celebrations';
+  category: 'All' | 'Art & Creativity' | 'Experiential Learning' | 'Sports' | 'Celebrations' | 'Academic & Quiz';
   dateText: string;
   description: string;
   image: string;
@@ -61,7 +61,7 @@ export interface AchievementItem {
   title: string;
   level: string;
   date: string;
-  category: 'All' | 'Academic & Quiz' | 'Karate & Martial Arts' | 'Sports' | 'National';
+  category: 'All' | 'Academic & Quiz' | 'Karate & Martial Arts' | 'Sports' | 'National' | 'Awards & Accreditation';
   result: string;
   detail: string;
   medalType: 'gold' | 'silver' | 'bronze' | 'certificate' | 'trophy';

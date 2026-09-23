@@ -41,9 +41,9 @@ export const AnnouncementTicker = ({ onOpenAdmission }: AnnouncementTickerProps)
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: '0.625rem',
-        paddingBottom: '0.625rem',
-        gap: '1rem',
+        paddingTop: '0.25rem',
+        paddingBottom: '0.25rem',
+        gap: '0.75rem',
         flexWrap: 'wrap'
       }}>
         {/* Label Tag */}

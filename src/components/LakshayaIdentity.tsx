@@ -184,7 +184,7 @@ export const LakshayaIdentity = () => {
                   The Anatomy of the Lakshaya Emblem
                 </h3>
                 <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  {SCHOOL_INFO.logoSymbolism}
+                  {SCHOOL_INFO.logoPhilosophy}
                 </p>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
@@ -242,7 +242,7 @@ export const LakshayaIdentity = () => {
                   fontWeight: 800,
                   marginBottom: '1rem'
                 }}>
-                  "{SCHOOL_INFO.sanskritMotto}"
+                  "{SCHOOL_INFO.mottoHindi}"
                 </div>
                 <h4 style={{ fontSize: '1.25rem', color: 'var(--primary-950)', marginBottom: '0.75rem' }}>
                   Our Guiding Credo

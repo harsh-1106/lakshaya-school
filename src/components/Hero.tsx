@@ -13,13 +13,9 @@ import {
   Compass,
   TreePine,
   Medal,
-  Calendar,
-  BookOpen,
   Info,
-  Clock,
   HeartHandshake
 } from 'lucide-react';
-import { SCHOOL_INFO, FAST_FACTS } from '../data/schoolData';
 
 interface HeroProps {
   onOpenAdmission: () => void;
@@ -44,7 +40,7 @@ interface SlideData {
   categoryTag: string;
 }
 
-export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenPolicies }: HeroProps) => {
+export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts }: HeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [selectedAge, setSelectedAge] = useState<number>(4);
@@ -281,104 +277,84 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
         zIndex: 10, 
         width: '100%', 
         maxWidth: '1280px',
-        paddingTop: 'clamp(0.85rem, 2vh, 1.75rem)',
-        paddingBottom: 'clamp(0.6rem, 1.5vh, 1.25rem)',
+        paddingTop: '0.2rem',
+        paddingBottom: '0.2rem',
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center'
+        justifyContent: 'space-between',
+        height: '100%',
+        boxSizing: 'border-box'
       }}>
-        {/* Top School Verification Header Badge */}
+        {/* Top Header Row with Category Badge + Official Portal Tag */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '0.4rem',
-          marginBottom: '0.75rem'
+          gap: '0.35rem',
+          marginBottom: '0.25rem'
         }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.4rem',
-            backgroundColor: 'rgba(237, 28, 37, 0.12)',
-            border: '1px solid rgba(237, 28, 37, 0.35)',
-            padding: '0.2rem 0.65rem',
-            borderRadius: 'var(--radius-full)',
-            backdropFilter: 'blur(8px)'
-          }}>
-            <span style={{
-              width: '7px',
-              height: '7px',
-              borderRadius: '50%',
-              backgroundColor: '#ef4444',
-              display: 'inline-block',
-              boxShadow: '0 0 6px #ef4444'
-            }} />
-            <span style={{
-              fontSize: 'clamp(0.68rem, 1.5vw, 0.76rem)',
-              fontWeight: 800,
-              color: '#fca5a5',
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase'
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+            {/* Active Slide Category Pill */}
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.3rem',
+              backgroundColor: 'rgba(245, 158, 11, 0.15)',
+              border: '1px solid rgba(245, 158, 11, 0.4)',
+              padding: '0.12rem 0.55rem',
+              borderRadius: 'var(--radius-full)',
+              backdropFilter: 'blur(8px)'
             }}>
-              Official Portal • S.P. Ring Road Campus
-            </span>
-          </div>
+              <slide.badgeIcon size={12} color={slide.badgeColor} style={{ flexShrink: 0 }} />
+              <span style={{
+                fontSize: '0.68rem',
+                fontWeight: 800,
+                color: slide.badgeColor,
+                letterSpacing: '0.03em',
+                textTransform: 'uppercase'
+              }}>
+                {slide.badgeText}
+              </span>
+            </div>
 
-          <div style={{ display: 'none', alignItems: 'center', gap: '0.85rem', fontSize: '0.72rem', color: '#94a3b8' }} className="hero-top-badges">
-            <span>Affiliation: <strong>CBSE Curriculum</strong></span>
-            <span>•</span>
-            <span>Founder: <strong>Agrawal Group (35+ Yrs)</strong></span>
-            <span>•</span>
-            <span>Campus: <strong>2 Acres Safe Campus</strong></span>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.3rem',
+              backgroundColor: 'rgba(237, 28, 37, 0.12)',
+              border: '1px solid rgba(237, 28, 37, 0.35)',
+              padding: '0.12rem 0.5rem',
+              borderRadius: 'var(--radius-full)'
+            }}>
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#ef4444', display: 'inline-block' }} />
+              <span style={{ fontSize: '0.66rem', fontWeight: 800, color: '#fca5a5', textTransform: 'uppercase' }}>
+                Official Portal • S.P. Ring Road
+              </span>
+            </div>
           </div>
         </div>
 
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr',
-          gap: 'clamp(1rem, 2.5vw, 2.25rem)',
-          alignItems: 'center'
+          gap: 'clamp(0.6rem, 1.5vw, 1.25rem)',
+          alignItems: 'center',
+          flex: 1
         }} className="hero-slide-grid">
           
           {/* Left Column: Headline & Official School Information */}
           <div style={{ minWidth: 0, maxWidth: '100%' }}>
             
-            {/* Active Slide Category Pill */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              backgroundColor: 'rgba(245, 158, 11, 0.15)',
-              border: '1px solid rgba(245, 158, 11, 0.4)',
-              padding: '0.25rem 0.75rem',
-              borderRadius: 'var(--radius-full)',
-              marginBottom: '0.65rem',
-              backdropFilter: 'blur(8px)',
-              maxWidth: '100%'
-            }}>
-              <slide.badgeIcon size={14} color={slide.badgeColor} style={{ flexShrink: 0 }} />
-              <span style={{
-                fontSize: 'clamp(0.68rem, 1.5vw, 0.78rem)',
-                fontWeight: 800,
-                color: slide.badgeColor,
-                letterSpacing: '0.03em',
-                textTransform: 'uppercase',
-                lineHeight: 1.3
-              }}>
-                {slide.badgeText}
-              </span>
-            </div>
-
             {/* Dynamic Headline */}
             <h1 style={{
-              fontSize: 'clamp(1.65rem, 3.4vw, 2.85rem)',
+              fontSize: 'clamp(1.15rem, 1.9vw, 1.7rem)',
               fontWeight: 800,
-              lineHeight: 1.15,
+              lineHeight: 1.16,
               color: '#ffffff',
-              letterSpacing: '-0.025em',
-              marginBottom: '0.55rem',
+              letterSpacing: '-0.02em',
+              marginBottom: '0.22rem',
               wordBreak: 'break-word'
             }}>
               {slide.titlePrimary}{' '}
@@ -397,24 +373,24 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
             <div style={{
               display: 'inline-block',
               fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)',
+              fontSize: 'clamp(0.68rem, 1vw, 0.78rem)',
               color: 'rgba(254, 243, 199, 0.95)',
-              borderLeft: '3px solid #ed1c25',
-              paddingLeft: '0.65rem',
-              marginBottom: '0.65rem',
+              borderLeft: '2.5px solid #ed1c25',
+              paddingLeft: '0.45rem',
+              marginBottom: '0.22rem',
               letterSpacing: '0.02em',
               fontStyle: 'italic',
-              lineHeight: 1.35
+              lineHeight: 1.25
             }}>
               "{slide.mottoQuote}"
             </div>
 
             {/* Verbatim Description from Real Site */}
             <p style={{
-              fontSize: 'clamp(0.825rem, 1.4vw, 0.925rem)',
+              fontSize: 'clamp(0.68rem, 0.95vw, 0.76rem)',
               color: '#cbd5e1',
-              lineHeight: 1.5,
-              marginBottom: '0.85rem',
+              lineHeight: 1.35,
+              marginBottom: '0.3rem',
               maxWidth: '560px'
             }}>
               {slide.description}
@@ -424,14 +400,14 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '0.4rem 0.85rem',
-              marginBottom: '1rem',
-              fontSize: 'clamp(0.72rem, 1.4vw, 0.8rem)',
+              gap: '0.2rem 0.6rem',
+              marginBottom: '0.35rem',
+              fontSize: 'clamp(0.65rem, 0.9vw, 0.7rem)',
               color: '#e2e8f0'
             }}>
               {slide.trustPoints.map((pt, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                  <CheckCircle2 size={14} color="var(--accent-gold)" style={{ flexShrink: 0 }} />
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                  <CheckCircle2 size={12} color="var(--accent-gold)" style={{ flexShrink: 0 }} />
                   <span style={{ fontWeight: 600 }}>{pt}</span>
                 </div>
               ))}
@@ -441,7 +417,7 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
             <div style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '0.6rem',
+              gap: '0.35rem',
               alignItems: 'center'
             }}>
               <button
@@ -449,32 +425,32 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.45rem',
+                  gap: '0.3rem',
                   backgroundColor: '#ed1c25',
                   color: '#ffffff',
                   border: 'none',
                   borderRadius: 'var(--radius-full)',
-                  padding: 'clamp(0.55rem, 1.4vw, 0.75rem) clamp(1rem, 2vw, 1.4rem)',
-                  fontSize: 'clamp(0.8rem, 1.6vw, 0.9rem)',
+                  padding: '0.32rem 0.8rem',
+                  fontSize: '0.75rem',
                   fontWeight: 800,
                   cursor: 'pointer',
-                  boxShadow: '0 4px 14px rgba(237, 28, 37, 0.4)'
+                  boxShadow: '0 2px 8px rgba(237, 28, 37, 0.35)'
                 }}
               >
                 <span>{slide.ctaPrimaryText}</span>
-                <ArrowRight size={15} />
+                <ArrowRight size={13} />
               </button>
 
               <button
                 onClick={handleSecondaryCTA}
                 className="btn btn-outline-white"
                 style={{
-                  padding: 'clamp(0.55rem, 1.4vw, 0.75rem) clamp(0.85rem, 1.8vw, 1.25rem)',
-                  fontSize: 'clamp(0.78rem, 1.6vw, 0.86rem)',
+                  padding: '0.32rem 0.75rem',
+                  fontSize: '0.74rem',
                   borderRadius: 'var(--radius-full)'
                 }}
               >
-                <FileText size={15} />
+                <FileText size={13} />
                 <span>{slide.ctaSecondaryText}</span>
               </button>
 
@@ -487,18 +463,18 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                     border: '1px dashed rgba(245, 158, 11, 0.5)',
                     color: 'var(--accent-gold)',
                     borderRadius: 'var(--radius-full)',
-                    padding: 'clamp(0.55rem, 1.4vw, 0.75rem) clamp(0.75rem, 1.6vw, 1rem)',
-                    fontSize: 'clamp(0.75rem, 1.5vw, 0.84rem)',
+                    padding: '0.32rem 0.65rem',
+                    fontSize: '0.72rem',
                     fontWeight: 700,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.3rem'
+                    gap: '0.25rem'
                   }}
                   title="Open Lakshaya Fast Facts"
                 >
-                  <Info size={14} />
-                  <span>:: Fast Facts</span>
+                  <Info size={12} />
+                  <span>Fast Facts</span>
                 </button>
               )}
             </div>
@@ -513,45 +489,45 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 backgroundColor: 'rgba(11, 23, 44, 0.82)',
                 backdropFilter: 'blur(16px)',
                 border: '1.5px solid rgba(245, 158, 11, 0.3)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(1rem, 2vw, 1.35rem)',
-                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '0.55rem 0.8rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)',
                 maxWidth: '100%',
                 boxSizing: 'border-box'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.4rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                    <Calculator size={16} color="var(--accent-gold)" />
-                    <h3 style={{ fontSize: 'clamp(0.88rem, 1.8vw, 1rem)', color: '#ffffff', fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem', flexWrap: 'wrap', gap: '0.25rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+                    <Calculator size={14} color="var(--accent-gold)" />
+                    <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
                       Grade & Age Eligibility Matcher
                     </h3>
                   </div>
                   <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.3rem',
+                    gap: '0.2rem',
                     backgroundColor: 'rgba(237, 28, 37, 0.2)',
                     color: '#fca5a5',
-                    padding: '0.15rem 0.5rem',
+                    padding: '0.08rem 0.4rem',
                     borderRadius: 'var(--radius-full)',
-                    fontSize: '0.7rem',
+                    fontSize: '0.64rem',
                     fontWeight: 800
                   }}>
                     <span>Admissions 2025-26</span>
                   </div>
                 </div>
 
-                <div style={{ marginBottom: '0.75rem' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '0.35rem', color: '#cbd5e1' }}>
-                    <span>Select Child's Age:</span>
+                <div style={{ marginBottom: '0.35rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', marginBottom: '0.2rem', color: '#cbd5e1' }}>
+                    <span>Child's Age:</span>
                     <strong style={{ color: 'var(--accent-gold)' }}>{selectedAge} Years Old</strong>
                   </div>
 
                   <div style={{
                     display: 'flex',
-                    gap: '0.3rem',
+                    gap: '0.2rem',
                     overflowX: 'auto',
-                    paddingBottom: '0.25rem',
+                    paddingBottom: '0.1rem',
                     maxWidth: '100%',
                     scrollbarWidth: 'none'
                   }}>
@@ -560,14 +536,14 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                         key={age}
                         onClick={() => setSelectedAge(age)}
                         style={{
-                          width: '28px',
-                          height: '28px',
+                          width: '21px',
+                          height: '21px',
                           borderRadius: '50%',
                           border: selectedAge === age ? '2px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.2)',
                           backgroundColor: selectedAge === age ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.08)',
                           color: selectedAge === age ? '#0b1a30' : '#ffffff',
                           fontWeight: 800,
-                          fontSize: '0.75rem',
+                          fontSize: '0.66rem',
                           cursor: 'pointer',
                           flexShrink: 0
                         }}
@@ -580,21 +556,21 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
 
                 <div style={{
                   backgroundColor: 'rgba(6, 14, 26, 0.85)',
-                  borderRadius: 'var(--radius-md)',
-                  padding: '0.75rem',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '0.35rem 0.55rem',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
-                  marginBottom: '0.75rem'
+                  marginBottom: '0.35rem'
                 }}>
-                  <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: 800, letterSpacing: '0.04em' }}>
+                  <div style={{ fontSize: '0.58rem', textTransform: 'uppercase', color: 'var(--accent-gold)', fontWeight: 800, letterSpacing: '0.04em' }}>
                     Recommended Wing & Teacher Ratio:
                   </div>
-                  <div style={{ fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)', fontWeight: 800, color: '#ffffff', margin: '0.15rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff', margin: '0.05rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span>{wingInfo.wing}</span>
-                    <span style={{ fontSize: '0.72rem', color: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.15)', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
+                    <span style={{ fontSize: '0.64rem', color: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.15)', padding: '0.05rem 0.3rem', borderRadius: '4px' }}>
                       Ratio {wingInfo.ratio}
                     </span>
                   </div>
-                  <p style={{ fontSize: '0.75rem', color: '#cbd5e1', lineHeight: 1.35, margin: 0 }}>
+                  <p style={{ fontSize: '0.66rem', color: '#cbd5e1', lineHeight: 1.25, margin: 0 }}>
                     {wingInfo.focus}
                   </p>
                 </div>
@@ -606,19 +582,19 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                     backgroundColor: '#ed1c25',
                     color: '#ffffff',
                     border: 'none',
-                    borderRadius: 'var(--radius-md)',
-                    fontSize: '0.8rem',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.72rem',
                     fontWeight: 800,
-                    padding: '0.55rem',
+                    padding: '0.32rem',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '0.4rem'
+                    gap: '0.3rem'
                   }}
                 >
                   <span>Apply for {wingInfo.wing.split('(')[0]}</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={12} />
                 </button>
               </div>
             )}
@@ -629,13 +605,13 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 backgroundColor: 'rgba(11, 23, 44, 0.82)',
                 backdropFilter: 'blur(16px)',
                 border: '1.5px solid rgba(251, 191, 36, 0.35)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(1rem, 2vw, 1.35rem)',
-                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)'
+                borderRadius: 'var(--radius-lg)',
+                padding: '0.55rem 0.8rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
-                  <Trophy size={18} color="var(--accent-gold)" />
-                  <h3 style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
+                  <Trophy size={14} color="var(--accent-gold)" />
+                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
                     27th ECI Award • Our 5 Core Beliefs
                   </h3>
                 </div>
@@ -643,19 +619,19 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 <div style={{
                   backgroundColor: 'rgba(245, 158, 11, 0.12)',
                   border: '1px solid rgba(245, 158, 11, 0.3)',
-                  padding: '0.6rem 0.75rem',
-                  borderRadius: 'var(--radius-md)',
-                  marginBottom: '0.75rem'
+                  padding: '0.28rem 0.45rem',
+                  borderRadius: 'var(--radius-xs)',
+                  marginBottom: '0.3rem'
                 }}>
-                  <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent-gold)' }}>
+                  <div style={{ fontSize: '0.64rem', fontWeight: 800, color: 'var(--accent-gold)' }}>
                     ECI National Education Award Citation:
                   </div>
-                  <div style={{ fontSize: '0.76rem', color: '#ffffff', fontWeight: 600, marginTop: '0.1rem' }}>
+                  <div style={{ fontSize: '0.68rem', color: '#ffffff', fontWeight: 600, marginTop: '0.04rem', lineHeight: 1.2 }}>
                     Ms. Neha Agrawal honoured as <em>Best Pre School Principal</em> & Lakshaya recognized as <em>Best Pre School</em>.
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginBottom: '0.75rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.12rem', marginBottom: '0.35rem' }}>
                   {[
                     '1. Every child is born potentially gifted.',
                     '2. Each child is a unique individual.',
@@ -666,15 +642,15 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                     <div key={idx} style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.4rem',
-                      padding: '0.25rem 0.5rem',
+                      gap: '0.3rem',
+                      padding: '0.12rem 0.35rem',
                       borderRadius: 'var(--radius-xs)',
                       backgroundColor: 'rgba(255, 255, 255, 0.04)',
-                      fontSize: '0.72rem',
+                      fontSize: '0.65rem',
                       color: idx === 4 ? 'var(--accent-gold)' : '#e2e8f0',
                       fontWeight: idx === 4 ? 800 : 500
                     }}>
-                      <HeartHandshake size={12} color={idx === 4 ? 'var(--accent-gold)' : '#60a5fa'} style={{ flexShrink: 0 }} />
+                      <HeartHandshake size={10} color={idx === 4 ? 'var(--accent-gold)' : '#60a5fa'} style={{ flexShrink: 0 }} />
                       <span>{belief}</span>
                     </div>
                   ))}
@@ -683,10 +659,10 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 <a
                   href="#leadership"
                   className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.78rem', padding: '0.5rem', borderRadius: 'var(--radius-md)' }}
+                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
                 >
                   <span>Read Ms. Neha Agrawal's Welcome Address</span>
-                  <ArrowRight size={13} />
+                  <ArrowRight size={11} />
                 </a>
               </div>
             )}
@@ -697,18 +673,18 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 backgroundColor: 'rgba(11, 23, 44, 0.82)',
                 backdropFilter: 'blur(16px)',
                 border: '1.5px solid rgba(96, 165, 250, 0.35)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(1rem, 2vw, 1.35rem)',
-                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)'
+                borderRadius: 'var(--radius-lg)',
+                padding: '0.55rem 0.8rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
-                  <Sparkles size={16} color="#60a5fa" />
-                  <h3 style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
+                  <Sparkles size={14} color="#60a5fa" />
+                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
                     The 5 Pentagon Dimensions
                   </h3>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '0.85rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.14rem', marginBottom: '0.35rem' }}>
                   {[
                     { name: '1. Cognitive Acuity', desc: 'Critical inquiry, STEM & math logic', color: '#60a5fa' },
                     { name: '2. Emotional Balance', desc: 'Resilience, mindfulness & self-regulation', color: '#f472b6' },
@@ -719,14 +695,14 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                     <div key={idx} style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.35rem 0.6rem',
-                      borderRadius: 'var(--radius-sm)',
+                      gap: '0.35rem',
+                      padding: '0.14rem 0.35rem',
+                      borderRadius: 'var(--radius-xs)',
                       backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      borderLeft: `3px solid ${p.color}`
+                      borderLeft: `2.5px solid ${p.color}`
                     }}>
-                      <div style={{ fontWeight: 800, fontSize: '0.76rem', color: '#ffffff' }}>{p.name}:</div>
-                      <div style={{ fontSize: '0.72rem', color: '#cbd5e1' }}>{p.desc}</div>
+                      <div style={{ fontWeight: 800, fontSize: '0.68rem', color: '#ffffff' }}>{p.name}:</div>
+                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>{p.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -734,10 +710,10 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 <a
                   href="#pentagon"
                   className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.8rem', padding: '0.55rem', borderRadius: 'var(--radius-md)' }}
+                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
                 >
                   <span>Interact with Pentagon Geometry</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={12} />
                 </a>
               </div>
             )}
@@ -748,41 +724,41 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 backgroundColor: 'rgba(11, 23, 44, 0.82)',
                 backdropFilter: 'blur(16px)',
                 border: '1.5px solid rgba(52, 211, 153, 0.35)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(1rem, 2vw, 1.35rem)',
-                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)'
+                borderRadius: 'var(--radius-lg)',
+                padding: '0.55rem 0.8rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
-                  <ShieldCheck size={16} color="#34d399" />
-                  <h3 style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
+                  <ShieldCheck size={14} color="#34d399" />
+                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
                     Campus Safety & Eco Infrastructure
                   </h3>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem', marginBottom: '0.85rem' }}>
-                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <ShieldCheck size={20} color="#34d399" style={{ marginBottom: '0.25rem' }} />
-                    <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff' }}>Seismic Safe</div>
-                    <div style={{ fontSize: '0.7rem', color: '#cbd5e1' }}>Certified earthquake-resistant structural safety</div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.35rem', marginBottom: '0.35rem' }}>
+                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.35rem 0.45rem', borderRadius: 'var(--radius-xs)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    <ShieldCheck size={14} color="#34d399" style={{ marginBottom: '0.1rem' }} />
+                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#ffffff' }}>Seismic Safe</div>
+                    <div style={{ fontSize: '0.64rem', color: '#cbd5e1', lineHeight: 1.2 }}>Certified earthquake safety</div>
                   </div>
 
-                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.75rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    <TreePine size={20} color="#34d399" style={{ marginBottom: '0.25rem' }} />
-                    <div style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ffffff' }}>Shilaj Farm</div>
-                    <div style={{ fontSize: '0.7rem', color: '#cbd5e1' }}>Hands-on eco & botany field excursions</div>
+                  <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.06)', padding: '0.35rem 0.45rem', borderRadius: 'var(--radius-xs)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    <TreePine size={14} color="#34d399" style={{ marginBottom: '0.1rem' }} />
+                    <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#ffffff' }}>Shilaj Farm</div>
+                    <div style={{ fontSize: '0.64rem', color: '#cbd5e1', lineHeight: 1.2 }}>Hands-on eco field trips</div>
                   </div>
                 </div>
 
-                <div style={{ fontSize: '0.74rem', color: '#cbd5e1', marginBottom: '0.75rem', lineHeight: 1.4 }}>
-                  📍 <strong>2 Acres Campus:</strong> Sardar Patel Ring Road, Opp. Applewoods Township, Ahmedabad.
+                <div style={{ fontSize: '0.67rem', color: '#cbd5e1', marginBottom: '0.35rem', lineHeight: 1.25 }}>
+                  📍 <strong>2 Acres Campus:</strong> S.P. Ring Road, Opp. Applewoods, Ahmedabad.
                 </div>
 
                 <a
                   href="#campus"
                   className="btn btn-primary"
-                  style={{ width: '100%', fontSize: '0.8rem', padding: '0.55rem', borderRadius: 'var(--radius-md)' }}
+                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
                 >
-                  <Compass size={14} />
+                  <Compass size={12} />
                   <span>Inspect Campus Amenities & Labs</span>
                 </a>
               </div>
@@ -794,39 +770,39 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 backgroundColor: 'rgba(11, 23, 44, 0.82)',
                 backdropFilter: 'blur(16px)',
                 border: '1.5px solid rgba(251, 191, 36, 0.35)',
-                borderRadius: 'var(--radius-xl)',
-                padding: 'clamp(1rem, 2vw, 1.35rem)',
-                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.4)'
+                borderRadius: 'var(--radius-lg)',
+                padding: '0.55rem 0.8rem',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}>
-                  <Trophy size={16} color="var(--accent-gold)" />
-                  <h3 style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 800 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.3rem' }}>
+                  <Trophy size={14} color="var(--accent-gold)" />
+                  <h3 style={{ fontSize: '0.8rem', color: '#ffffff', fontWeight: 800 }}>
                     Verified Student Laurels (Real Records)
                   </h3>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginBottom: '0.85rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.45rem 0.6rem', backgroundColor: 'rgba(245, 158, 11, 0.1)', borderRadius: 'var(--radius-md)' }}>
-                    <Medal size={20} color="#eab308" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.18rem', marginBottom: '0.35rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(245, 158, 11, 0.1)', borderRadius: 'var(--radius-xs)' }}>
+                    <Medal size={14} color="#eab308" />
                     <div>
-                      <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#ffffff' }}>22 Medals • 2nd All-India Shito-Ryu Karate</div>
-                      <div style={{ fontSize: '0.68rem', color: '#cbd5e1' }}>6 Gold, 7 Silver, 9 Bronze & 4 Certificates</div>
+                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>22 Medals • 2nd All-India Shito-Ryu Karate</div>
+                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>6 Gold, 7 Silver, 9 Bronze & 4 Certificates</div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.45rem 0.6rem', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: 'var(--radius-md)' }}>
-                    <Trophy size={20} color="#60a5fa" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(59, 130, 246, 0.1)', borderRadius: 'var(--radius-xs)' }}>
+                    <Trophy size={14} color="#60a5fa" />
                     <div>
-                      <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#ffffff' }}>Discovery Channel Wild Wisdom Quiz</div>
-                      <div style={{ fontSize: '0.68rem', color: '#cbd5e1' }}>4 State Finalists & 225+ Achiever Certificates</div>
+                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>Discovery Channel Wild Wisdom Quiz</div>
+                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>4 State Finalists & 225+ Certificates</div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '0.45rem 0.6rem', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderRadius: 'var(--radius-md)' }}>
-                    <Award size={20} color="#34d399" />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.22rem 0.4rem', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderRadius: 'var(--radius-xs)' }}>
+                    <Award size={14} color="#34d399" />
                     <div>
-                      <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#ffffff' }}>SpellBee National Level Examination</div>
-                      <div style={{ fontSize: '0.68rem', color: '#cbd5e1' }}>51 National Level Achiever Certificates</div>
+                      <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#ffffff' }}>SpellBee National Level Examination</div>
+                      <div style={{ fontSize: '0.64rem', color: '#cbd5e1' }}>51 National Level Certificates</div>
                     </div>
                   </div>
                 </div>
@@ -834,10 +810,10 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 <a
                   href="#achievements"
                   className="btn btn-outline-white"
-                  style={{ width: '100%', fontSize: '0.8rem', padding: '0.55rem', borderRadius: 'var(--radius-md)' }}
+                  style={{ width: '100%', fontSize: '0.72rem', padding: '0.32rem', borderRadius: 'var(--radius-sm)' }}
                 >
                   <span>Inspect Complete Hall of Laurels</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={12} />
                 </a>
               </div>
             )}
@@ -846,20 +822,21 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
 
         {/* Bottom Slide Controller & Quick Stats Bar */}
         <div style={{
-          marginTop: 'clamp(0.75rem, 1.8vh, 1.25rem)',
+          marginTop: '0.2rem',
+          marginBottom: '0.1rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '0.75rem',
+          flexWrap: 'nowrap',
+          gap: '0.4rem',
           backgroundColor: 'rgba(255, 255, 255, 0.05)',
           backdropFilter: 'blur(10px)',
           borderRadius: 'var(--radius-md)',
-          padding: '0.45rem 0.85rem',
+          padding: '0.15rem 0.55rem',
           border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
           {/* Slide Indicators */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', flexWrap: 'nowrap', overflowX: 'auto', scrollbarWidth: 'none' }}>
             {slides.map((s, idx) => (
               <button
                 key={s.id}
@@ -869,19 +846,21 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                   border: currentSlide === idx ? '1px solid #ed1c25' : '1px solid transparent',
                   color: currentSlide === idx ? '#ffffff' : '#cbd5e1',
                   borderRadius: 'var(--radius-full)',
-                  padding: '0.2rem 0.6rem',
-                  fontSize: '0.72rem',
+                  padding: '0.1rem 0.42rem',
+                  fontSize: '0.64rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   transition: 'all var(--transition-fast)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.25rem'
+                  gap: '0.2rem',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
                 }}
               >
                 <span style={{
-                  width: '6px',
-                  height: '6px',
+                  width: '4px',
+                  height: '4px',
                   borderRadius: '50%',
                   backgroundColor: currentSlide === idx ? '#ed1c25' : 'rgba(255, 255, 255, 0.4)'
                 }} />
@@ -891,27 +870,27 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
           </div>
 
           {/* Prev/Next Controls + Quick Stat Pointers */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <div style={{ display: 'none', alignItems: 'center', gap: '0.85rem' }} className="hero-stats-compact">
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+            <div style={{ display: 'none', alignItems: 'center', gap: '0.55rem' }} className="hero-stats-compact">
+              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
                 <strong style={{ color: '#ffffff' }}>2 Acres</strong> Campus
               </span>
               <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
+              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
                 <strong style={{ color: '#ffffff' }}>1:15</strong> Mentorship
               </span>
               <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
-              <span style={{ fontSize: '0.75rem', color: '#cbd5e1' }}>
+              <span style={{ fontSize: '0.68rem', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
                 <strong style={{ color: 'var(--accent-gold)' }}>250+</strong> Honors
               </span>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
               <button
                 onClick={handlePrev}
                 style={{
-                  width: '26px',
-                  height: '26px',
+                  width: '20px',
+                  height: '20px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
@@ -923,13 +902,13 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 }}
                 aria-label="Previous Slide"
               >
-                <ChevronLeft size={14} />
+                <ChevronLeft size={12} />
               </button>
               <button
                 onClick={handleNext}
                 style={{
-                  width: '26px',
-                  height: '26px',
+                  width: '20px',
+                  height: '20px',
                   borderRadius: '50%',
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
@@ -941,7 +920,7 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
                 }}
                 aria-label="Next Slide"
               >
-                <ChevronRight size={14} />
+                <ChevronRight size={12} />
               </button>
             </div>
           </div>
@@ -951,25 +930,26 @@ export const Hero = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenP
       <style>{`
         @media (min-width: 992px) {
           .single-screen-hero {
-            height: calc(100vh - 120px) !important;
-            min-height: 560px !important;
-            max-height: 740px !important;
+            height: calc(100vh - 95px) !important;
+            min-height: 400px !important;
+            max-height: calc(100vh - 95px) !important;
+            overflow: hidden !important;
           }
           .hero-slide-grid {
-            grid-template-columns: 1.18fr 0.82fr !important;
+            grid-template-columns: 1.15fr 0.85fr !important;
+            gap: 1rem !important;
           }
+        }
+        @media (min-width: 1220px) {
           .hero-stats-compact {
-            display: flex !important;
-          }
-          .hero-top-badges {
             display: flex !important;
           }
         }
         @media (max-width: 991px) {
           .single-screen-hero {
-            min-height: calc(100vh - 120px) !important;
-            padding-top: 1rem !important;
-            padding-bottom: 1rem !important;
+            min-height: calc(100vh - 95px) !important;
+            padding-top: 0.4rem !important;
+            padding-bottom: 0.4rem !important;
           }
         }
       `}</style>

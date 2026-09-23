@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, GraduationCap, Info, ShieldAlert, Sparkles, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, GraduationCap, Info, ShieldAlert, Phone } from 'lucide-react';
 import { LakshayaLogo } from './LakshayaLogo';
 import { SCHOOL_INFO } from '../data/schoolData';
 
@@ -131,8 +131,8 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingTop: isScrolled ? '0.5rem' : '0.75rem',
-        paddingBottom: isScrolled ? '0.5rem' : '0.75rem',
+        paddingTop: isScrolled ? '0.35rem' : '0.45rem',
+        paddingBottom: isScrolled ? '0.35rem' : '0.45rem',
         transition: 'padding var(--transition-normal)',
         gap: '0.5rem',
         maxWidth: '1360px',
@@ -145,7 +145,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
           style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}
           aria-label="Lakshaya International School Homepage"
         >
-          <LakshayaLogo size={isScrolled ? 40 : 46} showText={true} />
+          <LakshayaLogo size={isScrolled ? 36 : 40} showText={true} />
         </a>
 
         {/* Desktop Navigation Links */}

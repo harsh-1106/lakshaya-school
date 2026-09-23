@@ -1,5 +1,5 @@
-import { X, BookOpen, Clock, Bus, ShieldCheck, Award, FileText, ChevronRight } from 'lucide-react';
-import { SCHOOL_INFO, FAST_FACTS, QUICK_LINKS, SCHOOL_POLICIES } from '../data/schoolData';
+import { X, BookOpen, Clock, Bus, ShieldCheck, ChevronRight } from 'lucide-react';
+import { SCHOOL_INFO, FAST_FACTS, SCHOOL_POLICIES } from '../data/schoolData';
 
 interface FastFactsModalProps {
   isOpen: boolean;
@@ -129,7 +129,7 @@ interface PoliciesModalProps {
   activeSection?: string;
 }
 
-export const PoliciesModal = ({ isOpen, onClose, activeSection = 'general' }: PoliciesModalProps) => {
+export const PoliciesModal = ({ isOpen, onClose }: PoliciesModalProps) => {
   if (!isOpen) return null;
 
   return (
