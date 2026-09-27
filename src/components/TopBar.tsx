@@ -6,9 +6,21 @@ interface TopBarProps {
   onOpenAdmission: () => void;
   onOpenFastFacts: () => void;
   onOpenPolicies: () => void;
+  onNavigateAlumni?: () => void;
+  onNavigateResults?: () => void;
+  onNavigateAdmin?: () => void;
 }
 
-export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpenPolicies }: TopBarProps) => {
+export const TopBar = ({ 
+  onOpenBrochure, 
+  onOpenAdmission, 
+  onOpenFastFacts, 
+  onOpenPolicies,
+  onNavigateAlumni,
+  onNavigateResults,
+  onNavigateAdmin
+}: TopBarProps) => {
+
   return (
     <div style={{
       backgroundColor: '#07152b',
@@ -162,6 +174,82 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
             <span>E-Brochure</span>
           </button>
 
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }} className="topbar-tablet-up">|</span>
+
+          {/* Alumni Link */}
+          {onNavigateAlumni && (
+            <button
+              onClick={onNavigateAlumni}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#38bdf8',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                padding: '0.15rem 0.35rem',
+                whiteSpace: 'nowrap'
+              }}
+              title="Lakshaya Alumni Portal"
+            >
+              <span>🎓 Alumni</span>
+            </button>
+          )}
+
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }} className="topbar-tablet-up">|</span>
+
+          {/* Result Portal Link */}
+          {onNavigateResults && (
+            <button
+              onClick={onNavigateResults}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                color: '#4ade80',
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                padding: '0.15rem 0.35rem',
+                whiteSpace: 'nowrap'
+              }}
+              title="Student Result & Marksheet Download"
+            >
+              <span>📄 Results</span>
+            </button>
+          )}
+
+          <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
+
+          {/* Admin Hub Link */}
+          {onNavigateAdmin && (
+            <button
+              onClick={onNavigateAdmin}
+              style={{
+                background: 'rgba(237, 28, 37, 0.2)',
+                border: '1px solid rgba(237, 28, 37, 0.4)',
+                color: '#fca5a5',
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                padding: '0.15rem 0.5rem',
+                borderRadius: '4px',
+                whiteSpace: 'nowrap'
+              }}
+              title="Executive Admin Command Hub"
+            >
+              <span>🔒 Admin</span>
+            </button>
+          )}
+
           <span style={{ color: 'rgba(255, 255, 255, 0.2)' }} className="topbar-desktop-only">|</span>
 
           {/* Admissions Trigger Button */}
@@ -188,6 +276,7 @@ export const TopBar = ({ onOpenBrochure, onOpenAdmission, onOpenFastFacts, onOpe
           </button>
         </div>
       </div>
+
 
       <style>{`
         @media (min-width: 640px) {

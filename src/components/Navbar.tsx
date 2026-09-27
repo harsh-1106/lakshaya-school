@@ -8,9 +8,21 @@ interface NavbarProps {
   onOpenBrochure: () => void;
   onOpenFastFacts: () => void;
   onOpenPolicies: () => void;
+  onNavigateAlumni?: () => void;
+  onNavigateResults?: () => void;
+  onNavigateAdmin?: () => void;
 }
 
-export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpenPolicies }: NavbarProps) => {
+export const Navbar = ({ 
+  onOpenAdmission, 
+  onOpenBrochure, 
+  onOpenFastFacts, 
+  onOpenPolicies,
+  onNavigateAlumni,
+  onNavigateResults,
+  onNavigateAdmin
+}: NavbarProps) => {
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -76,9 +88,10 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
     },
     {
       label: 'Admissions',
-      href: '#admissions-cta',
+
+      href: '#inquiry-form-section',
       children: [
-        { label: 'Admissions 2025-26 Overview', href: '#admissions-cta', desc: 'Seats open for Pre-Nursery to Grade 8' },
+        { label: 'Admissions 2025-26 Overview', href: '#inquiry-form-section', desc: 'Seats open for Pre-Nursery to Grade 8' },
         { label: 'Age Criteria & Grade Matcher', href: '#hero', desc: 'Check eligibility by birthdate & age' },
         { label: 'Online Enquiry & Registration', action: 'admissions', desc: 'Submit application for priority evaluation' },
         { label: 'Fee Structure & Guidelines', href: '#admissions-cta', desc: 'Transparent fee schedule & inclusions' },
@@ -94,7 +107,8 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
         { label: 'National SpellBee Laurels', href: '#achievements', desc: '51 National Level Certificates' },
       ]
     },
-    { label: 'Gallery', href: '#gallery' },
+    { label: 'Alumni', action: 'alumni', href: '#alumni' },
+    { label: 'Results', action: 'results', href: '#results' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -108,13 +122,34 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
       onOpenAdmission();
       return;
     }
+    if (subItem.action === 'alumni') {
+      if (onNavigateAlumni) onNavigateAlumni();
+      return;
+    }
+    if (subItem.action === 'results') {
+      if (onNavigateResults) onNavigateResults();
+      return;
+    }
+    if (subItem.action === 'admin') {
+      if (onNavigateAdmin) onNavigateAdmin();
+      return;
+    }
     if (subItem.href) {
+      if (subItem.href === '#alumni' && onNavigateAlumni) {
+        onNavigateAlumni();
+        return;
+      }
+      if (subItem.href === '#results' && onNavigateResults) {
+        onNavigateResults();
+        return;
+      }
       const el = document.querySelector(subItem.href);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
+
 
   return (
     <header style={{
@@ -160,11 +195,15 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
               <a
                 href={item.href}
                 onClick={(e) => {
-                  if (item.isPolicyTrigger) {
+                  if (item.action) {
+                    e.preventDefault();
+                    handleSubItemClick(item);
+                  } else if (item.isPolicyTrigger) {
                     e.preventDefault();
                     onOpenPolicies();
                   }
                 }}
+
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -249,6 +288,59 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
 
         {/* CTA Buttons & Mobile Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexShrink: 0 }}>
+          {/* Quick Admin Button */}
+          {onNavigateAdmin && (
+            <button
+              onClick={onNavigateAdmin}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+                backgroundColor: 'rgba(7, 21, 43, 0.06)',
+                color: '#07152b',
+                border: '1px solid #cbd5e1',
+                borderRadius: 'var(--radius-full)',
+                padding: '0.42rem 0.75rem',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                whiteSpace: 'nowrap'
+              }}
+              title="Open Admin Command Hub"
+              className="topbar-tablet-up"
+            >
+              <span>🔒 Admin</span>
+            </button>
+          )}
+
+          {/* Quick Inquire Button */}
+          <button
+            onClick={() => {
+              const el = document.querySelector('#inquiry-form-section');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                onOpenAdmission();
+              }
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              backgroundColor: '#07152b',
+              color: '#ffffff',
+              border: 'none',
+              borderRadius: 'var(--radius-full)',
+              padding: '0.45rem 0.9rem',
+              fontSize: '0.82rem',
+              fontWeight: 800,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <span>Inquire</span>
+          </button>
+
           {/* Primary Apply Button */}
           <button
             onClick={onOpenAdmission}
@@ -282,6 +374,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
             <GraduationCap size={15} />
             <span>Apply Now</span>
           </button>
+
 
           {/* Mobile menu trigger */}
           <button
@@ -376,12 +469,77 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
               </button>
             </div>
 
+            {/* Portal Jump Ribbons in Mobile Drawer */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.4rem', marginBottom: '0.75rem' }}>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onNavigateAlumni) onNavigateAlumni();
+                }}
+                style={{
+                  backgroundColor: '#07152b',
+                  color: '#38bdf8',
+                  border: 'none',
+                  padding: '0.5rem 0.25rem',
+                  borderRadius: '6px',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  textAlign: 'center'
+                }}
+              >
+                🎓 Alumni
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onNavigateResults) onNavigateResults();
+                }}
+                style={{
+                  backgroundColor: '#07152b',
+                  color: '#4ade80',
+                  border: 'none',
+                  padding: '0.5rem 0.25rem',
+                  borderRadius: '6px',
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  textAlign: 'center'
+                }}
+              >
+                📄 Results
+              </button>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onNavigateAdmin) onNavigateAdmin();
+                }}
+                style={{
+                  backgroundColor: 'rgba(237, 28, 37, 0.15)',
+                  color: '#ed1c25',
+                  border: '1px solid rgba(237, 28, 37, 0.3)',
+                  padding: '0.5rem 0.25rem',
+                  borderRadius: '6px',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  textAlign: 'center'
+                }}
+              >
+                🔒 Admin
+              </button>
+            </div>
+
             {navLinks.map((item) => (
               <div key={item.label} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '0.5rem' }}>
                 <a
                   href={item.href}
                   onClick={(e) => {
-                    if (item.isPolicyTrigger) {
+                    if (item.action) {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      handleSubItemClick(item);
+                    } else if (item.isPolicyTrigger) {
                       e.preventDefault();
                       setMobileMenuOpen(false);
                       onOpenPolicies();
@@ -389,6 +547,7 @@ export const Navbar = ({ onOpenAdmission, onOpenBrochure, onOpenFastFacts, onOpe
                       setMobileMenuOpen(false);
                     }
                   }}
+
                   style={{
                     display: 'flex',
                     alignItems: 'center',

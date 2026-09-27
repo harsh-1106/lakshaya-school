@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 scraped_pages.txt
 extract.js
+
+# Python
+__pycache__/
+*.pyc

@@ -1,154 +1,71 @@
-import { useState } from 'react';
-import { TopBar } from './components/TopBar';
-import { Navbar } from './components/Navbar';
-import { AnnouncementTicker } from './components/AnnouncementTicker';
-import { Hero } from './components/Hero';
-import { VisionMission } from './components/VisionMission';
-import { LakshayaIdentity } from './components/LakshayaIdentity';
-import { DevelopmentalPentagon } from './components/DevelopmentalPentagon';
-import { FocusPillars } from './components/FocusPillars';
-import { AcademicWings } from './components/AcademicWings';
-import { CampusShowcase } from './components/CampusShowcase';
-import { CampusVirtualTour } from './components/CampusVirtualTour';
-import { BeyondClassroom } from './components/BeyondClassroom';
-import { AchievementsWall } from './components/AchievementsWall';
-import { Testimonials } from './components/Testimonials';
-import { AdmissionsCTA } from './components/AdmissionsCTA';
-import { Footer } from './components/Footer';
-import { AdmissionModal } from './components/AdmissionModal';
-import { BrochureModal } from './components/BrochureModal';
-import { FastFactsModal, PoliciesModal } from './components/InstitutionalModals';
-import { FloatingAssistant } from './components/FloatingAssistant';
+import { lazy, Suspense, useState, useEffect, type ReactNode } from 'react';
+import { SiteApp } from './site/SiteApp';
+import { navigate } from './site/router';
+
+// Portals are loaded on demand so public visitors don't download them.
+const ResultPortal = lazy(() => import('./components/ResultPortal').then((m) => ({ default: m.ResultPortal })));
+const AdminPanel = lazy(() => import('./components/AdminPanel').then((m) => ({ default: m.AdminPanel })));
+
+const portal = (node: ReactNode) => <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>{node}</Suspense>;
+
+type ViewMode = 'site' | 'results' | 'admin';
+
+// The public website (including the alumni portal at /alumni) is path-routed inside SiteApp;
+// the Result and Admin portals keep their hash routes. Old #alumni links are redirected to /alumni.
+function viewFromHash(): ViewMode {
+  const hash = window.location.hash.toLowerCase();
+  if (hash === '#alumni') {
+    navigate('/alumni', { replace: true });
+    return 'site';
+  }
+  if (hash === '#results' || hash === '#result') return 'results';
+  if (hash === '#admin') return 'admin';
+  return 'site';
+}
 
 export function App() {
-  const [admissionModalOpen, setAdmissionModalOpen] = useState(false);
-  const [brochureModalOpen, setBrochureModalOpen] = useState(false);
-  const [fastFactsModalOpen, setFastFactsModalOpen] = useState(false);
-  const [policiesModalOpen, setPoliciesModalOpen] = useState(false);
+  const [currentView, setCurrentView] = useState<ViewMode>(viewFromHash);
 
-  const handleOpenAdmission = () => setAdmissionModalOpen(true);
-  const handleCloseAdmission = () => setAdmissionModalOpen(false);
+  useEffect(() => {
+    const handleHashChange = () => {
+      const view = viewFromHash();
+      setCurrentView(view);
+      if (view !== 'site') window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
-  const handleOpenBrochure = () => setBrochureModalOpen(true);
-  const handleCloseBrochure = () => setBrochureModalOpen(false);
+  const navigateToView = (view: ViewMode | 'alumni') => {
+    if (view === 'alumni') {
+      navigate('/alumni');
+      setCurrentView('site');
+      return;
+    }
+    if (view === 'site') {
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+    } else {
+      window.location.hash = view;
+    }
+    setCurrentView(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  const handleOpenFastFacts = () => setFastFactsModalOpen(true);
-  const handleCloseFastFacts = () => setFastFactsModalOpen(false);
+  if (currentView === 'results') {
+    return portal(<ResultPortal onBackToHome={() => navigateToView('site')} onOpenAdmin={() => navigateToView('admin')} />);
+  }
 
-  const handleOpenPolicies = () => setPoliciesModalOpen(true);
-  const handleClosePolicies = () => setPoliciesModalOpen(false);
+  if (currentView === 'admin') {
+    return portal(
+      <AdminPanel
+        onBackToHome={() => navigateToView('site')}
+        onOpenAlumni={() => navigateToView('alumni')}
+        onOpenResults={() => navigateToView('results')}
+      />,
+    );
+  }
 
-  return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* 1. Top Utility Header */}
-      <TopBar
-        onOpenAdmission={handleOpenAdmission}
-        onOpenBrochure={handleOpenBrochure}
-        onOpenFastFacts={handleOpenFastFacts}
-        onOpenPolicies={handleOpenPolicies}
-      />
-
-      {/* 2. Main Sticky Navigation with Official Menu & Crest */}
-      <Navbar
-        onOpenAdmission={handleOpenAdmission}
-        onOpenBrochure={handleOpenBrochure}
-        onOpenFastFacts={handleOpenFastFacts}
-        onOpenPolicies={handleOpenPolicies}
-      />
-
-      {/* 3. Live Campus News & Notice Ticker */}
-      <AnnouncementTicker
-        onOpenAdmission={handleOpenAdmission}
-      />
-
-      <main style={{ flex: 1 }}>
-        {/* 4. Prestigious Hero Section with Interactive Age/Grade Matcher & Real Slides */}
-        <Hero
-          onOpenAdmission={handleOpenAdmission}
-          onOpenBrochure={handleOpenBrochure}
-          onOpenFastFacts={handleOpenFastFacts}
-          onOpenPolicies={handleOpenPolicies}
-        />
-
-        {/* 5. Vision, Mission & Leadership Spotlight */}
-        <VisionMission />
-
-        {/* 6. Meaning of Lakshaya, Logo Symbolism, Beliefs & Founder */}
-        <LakshayaIdentity />
-
-        {/* 7. Signature Developmental Pentagon Pedagogy with Interactive Geometry */}
-        <DevelopmentalPentagon
-          onOpenAdmission={handleOpenAdmission}
-        />
-
-        {/* 8. The 8 Core Focus Pillars (Preserving lakshayaschool.com Focus On) */}
-        <FocusPillars
-          onOpenAdmission={handleOpenAdmission}
-        />
-
-        {/* 9. Academic Wings (Early Years to Senior Secondary) */}
-        <AcademicWings
-          onOpenAdmission={handleOpenAdmission}
-        />
-
-        {/* 10. Campus Showcase & Earthquake Resilient Safety */}
-        <CampusShowcase
-          onOpenAdmission={handleOpenAdmission}
-        />
-
-        {/* 11. Campus Virtual Visual Tour & Lightbox */}
-        <CampusVirtualTour />
-
-        {/* 12. Beyond Textbooks (Art Exhibition, Shilaj Farm, Karate, Festivals) */}
-        <BeyondClassroom />
-
-        {/* 13. Achievements & Medals Wall of Fame */}
-        <AchievementsWall />
-
-        {/* 14. Testimonials & Accreditations */}
-        <Testimonials />
-
-        {/* 15. Admissions 2025-26 Call to Action */}
-        <AdmissionsCTA
-          onOpenAdmission={handleOpenAdmission}
-          onOpenBrochure={handleOpenBrochure}
-        />
-      </main>
-
-      {/* 16. Institutional Footer */}
-      <Footer />
-
-      {/* Floating Admissions Counselor Help Pill */}
-      <FloatingAssistant
-        onOpenAdmission={handleOpenAdmission}
-        onOpenBrochure={handleOpenBrochure}
-      />
-
-      {/* Interactive Modals */}
-      <AdmissionModal
-        isOpen={admissionModalOpen}
-        onClose={handleCloseAdmission}
-      />
-
-      <BrochureModal
-        isOpen={brochureModalOpen}
-        onClose={handleCloseBrochure}
-      />
-
-      <FastFactsModal
-        isOpen={fastFactsModalOpen}
-        onClose={handleCloseFastFacts}
-        onOpenAdmission={handleOpenAdmission}
-        onOpenBrochure={handleOpenBrochure}
-      />
-
-      <PoliciesModal
-        isOpen={policiesModalOpen}
-        onClose={handleClosePolicies}
-      />
-    </div>
-  );
+  return <SiteApp />;
 }
 
 export default App;
-

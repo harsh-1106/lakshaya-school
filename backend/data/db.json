@@ -1,0 +1,67 @@
+{
+  "inquiries": [
+    {
+      "studentName": "Vihaan Shah",
+      "parentName": "Deepak Shah",
+      "email": "deepak.shah@example.com",
+      "phone": "+91 9825012345",
+      "grade": "Grade 5 (Primary Wing)",
+      "academicYear": "2025-26",
+      "visitDate": null,
+      "notes": "Interests: STEM & Experiential Learning.",
+      "id": "INQ-2025-003",
+      "status": "new",
+      "createdAt": "2026-09-26T16:40:51.247914",
+      "whatsappNotified": true,
+      "emailNotified": true
+    },
+    {
+      "id": "INQ-2025-001",
+      "studentName": "Vivaan Dave",
+      "parentName": "Rajesh Dave",
+      "email": "rajesh.dave@gmail.com",
+      "phone": "+91 98250 14829",
+      "grade": "Grade 5 (Primary)",
+      "academicYear": "2025-26",
+      "visitDate": "2025-04-10",
+      "notes": "Interested in robotics lab and experiential learning at Shilaj Farm.",
+      "status": "new",
+      "createdAt": "2025-03-24T10:30:00Z",
+      "whatsappNotified": true,
+      "emailNotified": true
+    },
+    {
+      "id": "INQ-2025-002",
+      "studentName": "Aanya Sharma",
+      "parentName": "Dr. Vikram Sharma",
+      "email": "v.sharma.ortho@gmail.com",
+      "phone": "+91 99099 23412",
+      "grade": "Pre-Nursery (Early Years)",
+      "academicYear": "2025-26",
+      "visitDate": "2025-04-05",
+      "notes": "Looking for award-winning early childhood foundation.",
+      "status": "review",
+      "createdAt": "2025-03-23T14:15:00Z",
+      "whatsappNotified": true,
+      "emailNotified": true
+    }
+  ],
+  "alumni": [],
+  "results": [
+    {
+      "id": "RES-2025-X01",
+      "rollNo": "LIS2025-X01",
+      "studentName": "Aryan Sharma",
+      "admissionNo": "LIS/ADM/2018/142",
+      "classGrade": "Class 10",
+      "section": "Section A",
+      "dob": "2009-08-14",
+      "academicYear": "2024-25",
+      "term": "Annual Board Assessment & Pre-Board Final",
+      "percentage": 95.67,
+      "cgpa": 9.8,
+      "resultStatus": "PASSED WITH DISTINCTION"
+    }
+  ],
+  "notifications": []
+}
