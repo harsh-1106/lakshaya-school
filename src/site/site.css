@@ -550,106 +550,6 @@
   top: 12px;
 }
 
-/* ---------- Utility bar ---------- */
-.lis .utility {
-  background: var(--navy-deep);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.8rem;
-}
-
-.lis .utility .wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 40px;
-}
-
-.lis .utility-left,
-.lis .utility-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.lis .utility a,
-.lis .utility button {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-.lis .utility a:hover,
-.lis .utility button:hover {
-  color: var(--gold);
-}
-
-.lis .utility svg {
-  width: 14px;
-  height: 14px;
-}
-
-.lis .utility .sep {
-  width: 1px;
-  height: 14px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.lis .utility .accent {
-  color: var(--gold);
-  font-weight: 600;
-}
-
-.lis .ql {
-  position: relative;
-}
-
-.lis .ql-menu {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 10px);
-  z-index: 120;
-  width: 260px;
-  padding: 8px;
-  background: var(--white);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--line);
-  color: var(--charcoal);
-}
-
-.lis .ql-menu a {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--navy);
-}
-
-.lis .utility .ql-menu a:hover {
-  background: var(--parchment);
-  color: var(--red);
-}
-
-@media (max-width: 860px) {
-  .lis .utility .hide-sm {
-    display: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .lis .utility-left {
-    display: none;
-  }
-  .lis .utility .wrap {
-    justify-content: center;
-  }
-}
-
 /* ---------- Header ---------- */
 .lis .header {
   position: sticky;
@@ -3578,4 +3478,215 @@
 
 .lis .dl > div:last-child:nth-child(odd) {
   grid-column: 1 / -1;
+}
+
+/* ---------- Navy header (distinct from the parchment hero) ---------- */
+.lis .header,
+.lis .header.scrolled {
+  background: var(--navy);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 3px solid var(--red);
+}
+
+.lis .header.scrolled {
+  box-shadow: 0 10px 30px -12px rgba(7, 29, 73, 0.55);
+}
+
+.lis .header .brand-text strong {
+  color: var(--white);
+}
+
+.lis .header .brand-text span {
+  color: var(--gold);
+}
+
+.lis .header .nav-trigger {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.lis .header .nav-item:hover .nav-trigger,
+.lis .header .nav-item.open .nav-trigger {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.lis .header .nav-trigger.active {
+  color: var(--gold);
+}
+
+.lis .header .nav-trigger svg {
+  opacity: 0.75;
+}
+
+.lis .header .burger {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+}
+
+.lis .header :focus-visible {
+  outline-color: var(--gold);
+}
+
+/* Inner-page heroes sit under the navy header: lift them to royal blue so the two read as separate bands. */
+.lis .page-hero {
+  background: linear-gradient(135deg, #123a86 0%, var(--navy) 70%);
+}
+
+/* ---------- Quick-access dock ---------- */
+.lis .dock {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.lis .dock-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 16px 0 14px;
+  border-radius: 14px 0 0 14px;
+  background: var(--navy);
+  color: var(--white);
+  font: 600 0.88rem/1 var(--body);
+  white-space: nowrap;
+  box-shadow: var(--shadow-md), inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  /* Only the icon peeks out until hover/focus. */
+  transform: translateX(calc(100% - 50px));
+  transition: transform 0.4s var(--ease), background 0.2s;
+}
+
+.lis .dock-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.lis .dock-btn:hover,
+.lis .dock-btn:focus-visible,
+.lis .dock-btn.open {
+  transform: none;
+}
+
+.lis .dock-btn.red {
+  background: var(--red);
+}
+
+.lis .dock-btn:not(.red):hover,
+.lis .dock-btn.open {
+  background: var(--royal);
+}
+
+.lis .dock-pop {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  translate: 0 -50%;
+  width: 280px;
+  padding: 10px;
+  display: grid;
+  gap: 2px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  animation: lis-pop 0.3s var(--ease);
+}
+
+.lis .dock-pop strong {
+  padding: 8px 12px 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.lis .dock-pop a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy);
+  transition: background 0.2s, color 0.2s;
+}
+
+.lis .dock-pop a:hover {
+  background: var(--parchment);
+  color: var(--red);
+}
+
+.lis .dock-pop hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 6px 4px;
+}
+
+@media (max-width: 760px) {
+  .lis .dock {
+    display: none;
+  }
+}
+
+.lis .drawer-contact {
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--navy);
+}
+
+.lis .drawer-contact a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hero sits close under the nav: small top padding, both columns aligned to the top. */
+.lis .hero {
+  padding-top: clamp(20px, 2.6vw, 36px);
+}
+
+.lis .hero-grid {
+  align-items: start;
+}
+
+.lis .hero-grid > :last-child {
+  margin-top: 24px;
+}
+
+.lis .hero h1 {
+  margin-top: 16px;
+}
+
+/* Collapsed dock tabs show only the icon (14px + 20px icon + 14px); the label fades in on hover. */
+.lis .dock-btn {
+  transform: translateX(calc(100% - 48px));
+}
+
+.lis .dock-btn span {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.lis .dock-btn:hover span,
+.lis .dock-btn:focus-visible span,
+.lis .dock-btn.open span {
+  opacity: 1;
+}
+
+/* Full-colour crest with a white sticker edge, following the shield shape. */
+.lis .header .brand img.brand-crest {
+  width: 58px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }

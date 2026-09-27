@@ -85,8 +85,8 @@ function Hero() {
               <defs>
                 <path id="ring" d="M56,56 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0" />
               </defs>
-              <text fill="currentColor" fontSize="9.5" fontWeight="700" letterSpacing="2.6" fontFamily="Inter, sans-serif">
-                <textPath href="#ring">AIM HIGH · JNANAM PARAMAM DHYEYAM ·</textPath>
+              <text fill="currentColor" fontSize="9.5" fontWeight="700" letterSpacing="2.9" fontFamily="Inter, sans-serif">
+                <textPath href="#ring">AIM HIGH · GHYAN PARAMAM DHYEYAM ·</textPath>
               </text>
             </svg>
             <img src="/brand/crest-reversed.png" alt="" />

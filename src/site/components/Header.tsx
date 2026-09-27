@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, ChevronDown, FileText, GraduationCap, Mail, Menu, Phone, Sparkles, Trophy, X } from 'lucide-react';
+import { ArrowUpRight, ChevronDown, FileText, GraduationCap, LayoutGrid, Mail, MapPin, Menu, Phone, Sparkles, Trophy, X } from 'lucide-react';
 import { Link, usePath } from '../router';
 import { NAV, QUICK_LINKS, SCHOOL, type NavGroup } from '../data/content';
 import { Arrow, useSiteUi } from './ui';
@@ -7,67 +7,78 @@ import { Arrow, useSiteUi } from './ui';
 const isActive = (group: NavGroup, path: string) =>
   group.to === path || (group.items ?? []).some((i) => i.to === path || (i.to.length > 1 && path.startsWith(i.to + '/'))) || (group.to !== '/' && path.startsWith(group.to.split('/').slice(0, 2).join('/') + '/'));
 
-function UtilityBar() {
+type DockPanel = 'links' | 'contact' | null;
+
+/** Quick-access dock on the right edge (desktop): E-Brochure, Fast Facts, Quick Links and Contact. */
+function QuickDock() {
   const { openFacts } = useSiteUi();
-  const [qlOpen, setQlOpen] = useState(false);
-  const qlRef = useRef<HTMLDivElement>(null);
+  const [panel, setPanel] = useState<DockPanel>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const path = usePath();
 
-  useEffect(() => setQlOpen(false), [path]);
+  useEffect(() => setPanel(null), [path]);
   useEffect(() => {
-    if (!qlOpen) return;
-    const off = (e: MouseEvent) => !qlRef.current?.contains(e.target as Node) && setQlOpen(false);
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setQlOpen(false);
+    if (!panel) return;
+    const off = (e: MouseEvent) => !ref.current?.contains(e.target as Node) && setPanel(null);
+    const esc = (e: KeyboardEvent) => e.key === 'Escape' && setPanel(null);
     document.addEventListener('mousedown', off);
     document.addEventListener('keydown', esc);
     return () => {
       document.removeEventListener('mousedown', off);
       document.removeEventListener('keydown', esc);
     };
-  }, [qlOpen]);
+  }, [panel]);
+
+  const toggle = (p: DockPanel) => setPanel((cur) => (cur === p ? null : p));
 
   return (
-    <div className="utility">
-      <div className="wrap">
-        <div className="utility-left">
-          <a href={`tel:${SCHOOL.phones[0].replace(/\s/g, '')}`}>
-            <Phone /> {SCHOOL.phones[0]}
-          </a>
-          <span className="sep hide-sm" />
-          <a href={`mailto:${SCHOOL.email}`} className="hide-sm">
-            <Mail /> {SCHOOL.email}
-          </a>
-        </div>
-        <div className="utility-right">
-          <a href={SCHOOL.brochure} target="_blank" rel="noopener" className="accent">
-            <FileText /> E-Brochure
-          </a>
-          <button type="button" onClick={openFacts}>
-            <Sparkles /> Fast Facts
-          </button>
-          <div className="ql" ref={qlRef}>
-            <button type="button" aria-expanded={qlOpen} aria-haspopup="true" onClick={() => setQlOpen((o) => !o)}>
-              Quick Links <ChevronDown />
-            </button>
-            {qlOpen && (
-              <div className="ql-menu">
-                {QUICK_LINKS.map((q) => (
-                  <Link key={q.to} to={q.to}>
-                    {q.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <span className="sep hide-sm" />
-          <Link to="/alumni" className="hide-sm">
-            <GraduationCap /> Alumni
+    <div className="dock" ref={ref} aria-label="Quick access">
+      <a href={SCHOOL.brochure} target="_blank" rel="noopener" className="dock-btn red">
+        <FileText aria-hidden="true" /> <span>E-Brochure</span>
+      </a>
+      <button type="button" className="dock-btn" onClick={openFacts}>
+        <Sparkles aria-hidden="true" /> <span>Fast Facts</span>
+      </button>
+      <button type="button" className={`dock-btn${panel === 'links' ? ' open' : ''}`} aria-expanded={panel === 'links'} aria-haspopup="true" onClick={() => toggle('links')}>
+        <LayoutGrid aria-hidden="true" /> <span>Quick Links</span>
+      </button>
+      <button type="button" className={`dock-btn${panel === 'contact' ? ' open' : ''}`} aria-expanded={panel === 'contact'} aria-haspopup="true" onClick={() => toggle('contact')}>
+        <Phone aria-hidden="true" /> <span>Contact</span>
+      </button>
+
+      {panel === 'links' && (
+        <div className="dock-pop" role="menu">
+          <strong>Quick Links</strong>
+          {QUICK_LINKS.map((q) => (
+            <Link key={q.to} to={q.to} role="menuitem">
+              {q.label}
+            </Link>
+          ))}
+          <hr />
+          <Link to="/alumni" role="menuitem">
+            <GraduationCap size={16} /> Alumni
           </Link>
-          <a href="#results" className="hide-sm">
-            <Trophy /> Result Portal
+          <a href="#results" role="menuitem">
+            <Trophy size={16} /> Result Portal
           </a>
         </div>
-      </div>
+      )}
+      {panel === 'contact' && (
+        <div className="dock-pop">
+          <strong>Contact us</strong>
+          {SCHOOL.phones.map((p) => (
+            <a key={p} href={`tel:${p.replace(/\s/g, '')}`}>
+              <Phone size={16} /> {p}
+            </a>
+          ))}
+          <a href={`mailto:${SCHOOL.email}`}>
+            <Mail size={16} /> {SCHOOL.email}
+          </a>
+          <Link to="/contact">
+            <MapPin size={16} /> Find us on the map
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
@@ -209,6 +220,14 @@ function Drawer({ path, onClose }: { path: string; onClose: () => void }) {
           </div>
         </div>
         <div className="drawer-foot">
+          <div className="drawer-contact">
+            <a href={`tel:${SCHOOL.phones[0].replace(/\s/g, '')}`}>
+              <Phone size={16} /> {SCHOOL.phones[0]}
+            </a>
+            <a href={`mailto:${SCHOOL.email}`}>
+              <Mail size={16} /> {SCHOOL.email}
+            </a>
+          </div>
           <Link to="/admissions/inquiry" className="btn red" onClick={onClose}>
             Admission inquiry <Arrow />
           </Link>
@@ -249,11 +268,10 @@ export function Header() {
 
   return (
     <>
-      <UtilityBar />
       <header className={`header${scrolled ? ' scrolled' : ''}`}>
         <div className="wrap">
           <Link to="/" className="brand" aria-label="Lakshaya International School — home">
-            <img src="/brand/crest.png" alt="" width={50} height={48} />
+            <img className="brand-crest" src="/brand/crest-sticker.png" alt="" width={324} height={298} />
             <span className="brand-text">
               <strong>LAKSHAYA</strong>
               <span>International School</span>
@@ -268,6 +286,7 @@ export function Header() {
           </button>
         </div>
       </header>
+      <QuickDock />
       {drawer && <Drawer path={path} onClose={() => setDrawer(false)} />}
     </>
   );
